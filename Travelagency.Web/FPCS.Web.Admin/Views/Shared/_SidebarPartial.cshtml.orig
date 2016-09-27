@@ -1,0 +1,181 @@
+﻿@using FPCS.Data.Enums;
+
+<div class="sidebar" id="sidebar">
+    <script type="text/javascript">
+        try { ace.settings.check('sidebar', 'fixed') } catch (e) { }
+    </script>
+
+    <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+        <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+            <button class="btn btn-small btn-success">
+                <i class="icon-signal"></i>
+            </button>
+
+            <button class="btn btn-small btn-info">
+                <i class="icon-pencil"></i>
+            </button>
+
+            <button class="btn btn-small btn-warning">
+                <i class="icon-group"></i>
+            </button>
+
+            <button class="btn btn-small btn-danger">
+                <i class="icon-cogs"></i>
+            </button>
+        </div>
+
+        <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+            <span class="btn btn-success"></span>
+
+            <span class="btn btn-info"></span>
+
+            <span class="btn btn-warning"></span>
+
+            <span class="btn btn-danger"></span>
+        </div>
+    </div>
+    <!--#sidebar-shortcuts-->
+
+    <ul class="nav nav-list">
+        <li>
+            <a href="@Url.Action("Index", "Home")">
+                <i class="icon-dashboard"></i>
+                <span class="menu-text">Dashboard </span>
+            </a>
+        </li>
+
+        <li>
+            <a href="@Url.Action("Index", "Family")">
+                <i class="icon-group"></i>
+                <span class="menu-text">Family Manager </span>
+            </a>
+        </li>
+        
+        @if (Html.IsAccessEnabled(Role.Admin))
+        {
+            <li>
+                <a href="@Url.Action("Index", "Guardian")">
+                    <i class="icon-group"></i>
+                    <span class="menu-text">Guardian Manager </span>
+                </a>
+            </li>
+        }
+
+        <li>
+            <a href="@Url.Action("Index", "Student")">
+                <i class="icon-group"></i>
+                <span class="menu-text">Student Manager </span>
+            </a>
+        </li>
+
+        <li>
+            <a href="@Url.Action("Index", "Teacher")">
+                <i class="icon-group"></i>
+                <span class="menu-text">Teacher Manager </span>
+            </a>
+        </li>
+        
+<<<<<<< HEAD
+        @if (Html.IsAccessEnabled(Role.Admin))
+        {
+            <li>
+                <a href="@Url.Action("Index", "Vendor")">
+                    <i class="icon-group"></i>
+                    <span class="menu-text">Vendor Manager</span>
+                </a>
+            </li>
+             <li>
+                <a href="@Url.Action("Index", "User")">
+                    <i class="icon-group"></i>
+                    <span class="menu-text">User Manager </span>
+                </a>
+            </li>
+        }
+            
+=======
+        @if (Html.IsAccessEnabled(Role.Admin, Role.Teacher))
+        {
+            <li>
+                <a href="@Url.Action("Index", "Instructor")">
+                    <i class="icon-group"></i>
+                    <span class="menu-text">Instructor Manager</span>
+                </a>
+            </li>
+        }
+        
+        @if (Html.IsAccessEnabled(Role.Admin, Role.Teacher, Role.Guardian))
+        {
+            <li>
+                <a href="@Url.Action("Index", "Grade")">
+                    <i class="icon-group"></i>
+                    <span class="menu-text">Grade Manager</span>
+                </a>
+            </li>
+        }
+
+>>>>>>> MIKHAIL
+        @if (Html.IsAccessEnabled(Role.Admin, Role.Teacher, Role.Guardian))
+        {
+            <li>
+                <a href="@Url.Action("Index", "SignedCourse")">
+                    <i class="icon-calendar"></i>
+                    <span class="menu-text">Signed Course</span>
+                </a>
+            </li>
+        }
+            
+        @if (Html.IsAccessEnabled(Role.Admin, Role.Teacher))
+        {
+            <li>
+                <a href="@Url.Action("Index", "FPCSCourse")">
+                    <i class="icon-briefcase"></i>
+                    <span class="menu-text">FPCS Course Manager </span>
+                </a>
+            </li>
+        }
+
+        @if (Html.IsAccessEnabled(Role.Admin))
+        {
+            <li>
+                <a href="@Url.Action("Index", "ASDCourse")">
+                    <i class="icon-briefcase"></i>
+                    <span class="menu-text">ASD Course Manager </span>
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index", "SchoolYear")">
+                    <i class="icon-calendar"></i>
+                    <span class="menu-text">School Year Manager </span>
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index", "GoodAndServiceApproval")">
+                    <i class="icon-calendar"></i>
+                    <span class="menu-text">Good and Service</span>
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index", "Vendor")">
+                    <i class="icon-calendar"></i>
+                    <span class="menu-text">Vendor Manager</span>
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index", "User")">
+                    <i class="icon-group"></i>
+                    <span class="menu-text">User Manager</span>
+                </a>
+            </li>
+        }
+        
+    </ul>
+    <!--/.nav-list-->
+
+    <div class="sidebar-collapse" id="sidebar-collapse">
+        <i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
+    </div>
+
+    <script type="text/javascript">
+        try { ace.settings.check('sidebar', 'collapsed') } catch (e) { }
+    </script>
+</div>

@@ -1,0 +1,84 @@
+﻿@model FPCS.Web.Admin.Models.User.ProfileEditModel
+
+@{
+    ViewBag.Title = "Profile";
+    ViewBag.Header = "Profile";
+    ViewBag.SubHeader = "Profile User";
+}
+
+<div class="row-fluid">
+    <div class="span12 ">
+
+        @using (Html.BeginForm("ProfileEdit", "User", FormMethod.Post, new { id = "editProfileForm", @class = "form-horizontal" }))
+        {
+            @Html.AntiForgeryToken()
+   
+            <div class="control-group">
+                <div class="controls">
+                    <h3 class="lighter block green">On this page you can edit the profile</h3>
+                </div>
+            </div>
+    
+            <div class="controls">
+                @Html.ValidationSummary(true)
+            </div>
+    
+            @Html.HiddenFor(x => x.DbUserId)
+
+            <div class="control-group">
+                @Html.LabelFor(x => x.FirstName, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(x => x.FirstName, new { placeholder = Html.DisplayNameFor(x => x.FirstName), @class = "span9" })
+                    @Html.ValidationMessageFor(m => m.FirstName)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(x => x.LastName, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(x => x.LastName, new { placeholder = Html.DisplayNameFor(x => x.LastName), @class = "span9" })
+                    @Html.ValidationMessageFor(m => m.LastName)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(x => x.MI, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(x => x.MI, new { placeholder = Html.DisplayNameFor(x => x.MI), @class = "span9" })
+                    @Html.ValidationMessageFor(m => m.MI)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(x => x.Email, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(x => x.Email, new { placeholder = Html.DisplayNameFor(x => x.Email), @class = "span9" })
+                    @Html.ValidationMessageFor(m => m.Email)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(x => x.Login, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(x => x.Login, new { placeholder = Html.DisplayNameFor(x => x.Login), @class = "span9" })
+                    @Html.ValidationMessageFor(m => m.Login)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(x => x.Password, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.PasswordFor(x => x.Password, new { placeholder = Html.DisplayNameFor(x => x.Password), @class = "span9" })
+                    @Html.ValidationMessageFor(m => m.Password)
+                </div>
+            </div>
+    
+            <div class="form-actions">
+                <button onclick="javascript:$('#editProfileForm').submit()" class="btn btn-success" type="button">
+                    <i class="icon-ok bigger-110"></i>
+                    Save user
+                </button>
+                <button onclick="javascript:location.href='@Url.Action("ProfileDetails")'" class="btn btn-info" type="button">
+                    <i class="icon-reply bigger-110"></i>
+                    Cancel
+                </button>
+            </div>
+        }
+    </div>
+</div>
+

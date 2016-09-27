@@ -1,0 +1,174 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - FPCS</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--basic styles-->
+    @Styles.Render("~/Content/css/bootstrap")
+    
+    <!--[if IE 7]>
+		  <link rel="stylesheet" href="/Content/css/font-awesome-ie7.min.css" />
+		<![endif]-->
+
+    <!--page specific plugin styles-->
+    @Styles.Render("~/Content/css/plugin")
+
+    @RenderSection("styles", required: false)
+
+    <!--ace styles-->
+
+    @Styles.Render("~/Content/css/ace")
+
+    <!--[if lte IE 8]>
+		  <link rel="stylesheet" href="/Content/css/ace-ie.min.css" />
+		<![endif]-->
+
+    @Styles.Render("~/Content/css/ace")
+    @Styles.Render("~/Content/css/site")
+    
+    <!--ace settings handler-->
+
+    <script src="/Scripts/ace-extra.min.js"></script>
+
+    @RenderSection("head", required: false)
+</head>
+<body>
+    @Html.Hidden("roleCurrentUser", Html.GetRoleCurrentUser(), new { id = "roleCurrentUser" })
+    @Html.Hidden("idCurrentUser", Html.GetUser().UserId, new { id = "idCurrentUser" })
+
+    <div class="navbar" id="navbar">
+        <script type="text/javascript">
+            try { ace.settings.check('navbar', 'fixed') } catch (e) { }
+        </script>
+
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <a href="@Url.Action("Index", "Home")" class="brand">
+                    <small>
+                        <i class="icon-leaf"></i>
+                        FPCS @Html.GetRoleCurrentUserString()
+                    </small>
+                </a>
+                <!--/.brand-->
+
+                @Html.Action("_TopNavPartial", "Shared")
+            </div>
+            <!--/.container-fluid-->
+        </div>
+        <!--/.navbar-inner-->
+    </div>
+
+    <div class="main-container container-fluid">
+        <a class="menu-toggler" id="menu-toggler" href="#">
+            <span class="menu-text"></span>
+        </a>
+
+        @Html.Partial("_SidebarPartial")
+
+        <div class="main-content">
+
+            <div class="main-alert alert alert-block" style="display:none">
+                <button data-dismiss="alert" class="close" type="button">
+                    <i class="icon-remove"></i>
+                </button>
+                <i class="icon-bullhorn"></i>
+                <span class="main-alert-text"></span>
+            </div>
+
+            <div class="page-content">
+                @if (ViewBag.Header != null)
+                {
+                    <div class="page-header position-relative">
+                        <h1>
+                            @ViewBag.Header
+                            &nbsp;
+                            @if (ViewBag.SubHeader != null)
+                            {
+                                <small>
+                                    <i class="icon-double-angle-right"></i>
+                                    @ViewBag.SubHeader
+                                </small>
+                            }
+                        </h1>
+                    </div>
+                    <!--/.page-header-->
+                }
+
+                @RenderBody()
+            </div>
+            <!--/.page-content-->
+
+           @Html.Partial("_SettingsPartial")
+        </div>
+        <!--/.main-content-->
+    </div>
+    <!--/.main-container-->
+
+    <!--#dialog-message-->
+    <div id="dialog-message" class="hide"></div>
+
+    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-small btn-inverse">
+        <i class="icon-double-angle-up icon-only bigger-110"></i>
+    </a>
+
+    <!--basic scripts-->
+
+    @Scripts.Render("~/bundles/jquery")
+
+    <script type="text/javascript">
+        if ("ontouchend" in document) document.write("<script src='/Scripts/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+    </script>
+
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jquery-migrate")
+
+    <!--page specific plugin scripts-->
+
+    @Scripts.Render("~/bundles/bootstrap-tag")
+    @Scripts.Render("~/bundles/bootstrap-wysiwyg")
+    @Scripts.Render("~/bundles/jquery-hotkeys")
+    @Scripts.Render("~/bundles/jquery-ui")
+    @Scripts.Render("~/bundles/jquery-slimscroll")
+    @Scripts.Render("~/bundles/bootstrap-datetimepicker")
+    @Scripts.Render("~/bundles/jquery-autosize")
+    @Scripts.Render("~/bundles/chosen-jquery")
+    @Scripts.Render("~/bundles/maskedinput")
+    @Scripts.Render("~/bundles/select2-jquery")
+    @Scripts.Render("~/bundles/fuelux-spinner")
+    @Scripts.Render("~/bundles/jquery-scrolltable")
+    @Scripts.Render("~/bundles/jquery-alerts")
+    
+<!--ace scripts-->
+    @Scripts.Render("~/bundles/ace")
+    
+    <!--editable scripts-->
+    @Scripts.Render("~/bundles/editable")
+
+    <!--inline scripts related to this page-->
+    @Scripts.Render("~/bundles/fpcs")
+    
+    <script type="text/javascript">
+        jQuery(function ($) {
+            fpcs.initTitleForDialog();
+            fpcs.topNav.initSchoolYear();
+            @if(ViewBag.Message != null)
+            {
+                @:fpcs.showMessage("@ViewBag.Message");
+            }
+        });
+    </script>
+
+    @RenderSection("scripts", required: false)
+    
+    <div id="shadow" class="shadow_popup" style="display:none">
+
+    </div>
+
+    <div id="loader" class="popup" style="display:none">
+        <img src="~/Content/images/ajax-loader.gif" width="100%" height="100%" />
+    </div>
+</body>
+</html>

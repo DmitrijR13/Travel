@@ -1,0 +1,30 @@
+﻿@model FPCS.Web.Admin.Models.User.UserIndexModel
+
+@{
+    ViewBag.Title = "User Manager";
+    ViewBag.Header = "User Manager";
+}
+
+@Html.Hidden("stypeIsLocked", Model.IsLocked, new { id = "stypeIsLocked" })
+@Html.Hidden("stypeRole", Model.Roles, new { id = "stypeRole" })
+
+<div class="row-fluid">
+    <div class="span12 gridWrapper">
+       <table id="gridTable"></table>
+        <div id="gridPager"></div>
+    </div>
+</div>
+
+@section Styles {
+    @Styles.Render("~/Content/css/jqGrid")
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqGrid")
+
+    <script type="text/javascript">
+        jQuery(function ($) {
+            fpcs.user.initIndexPage();
+        });
+    </script>
+}

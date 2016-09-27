@@ -1,0 +1,240 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - FPCS</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--basic styles-->
+
+    <link href="/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/Content/css/bootstrap-responsive.min.css" rel="stylesheet" />
+    <link href="/Content/css/font-awesome.min.css" rel="stylesheet" />
+
+    <!--[if IE 7]>
+		  <link rel="stylesheet" href="/Content/css/font-awesome-ie7.min.css" />
+		<![endif]-->
+
+    <!--page specific plugin styles-->
+
+    <link rel="stylesheet" href="/Content/css/jquery-ui-1.10.3.full.min.css" />
+    <link rel="stylesheet" href="/Content/css/datepicker.css" />
+    <link rel="stylesheet" href="/Content/css/bootstrap-timepicker.css" />
+    <link rel="stylesheet" href="/Content/css/chosen.css" />
+    <link rel="stylesheet" href="/Content/css/jquery.alerts.css" />
+    @RenderSection("pluginsHead", required: false)
+
+    <!--fonts-->
+
+    <link rel="stylesheet" href="/Content/css/ace-fonts.css" />
+
+    <!--ace styles-->
+
+    <link rel="stylesheet" href="/Content/css/ace.min.css" />
+    <link rel="stylesheet" href="/Content/css/ace-responsive.min.css" />
+    <link rel="stylesheet" href="/Content/css/ace-skins.min.css" />
+
+    <!--[if lte IE 8]>
+		  <link rel="stylesheet" href="/Content/css/ace-ie.min.css" />
+		<![endif]-->
+
+    <link rel="stylesheet" href="/Content/css/site.css" />
+
+    <link rel="stylesheet" href="/Content/css/printStyle.css">
+
+    <link rel="stylesheet" href="~/Content/css/bootstrap-editable.css" />
+    
+    <!--inline styles related to this page-->
+
+    <!--ace settings handler-->
+
+    <script src="/Scripts/ace-extra.min.js"></script>
+
+    @*@Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")*@
+
+    @RenderSection("head", required: false)
+</head>
+<body>
+    @Html.Hidden("roleCurrentUser", Html.GetRoleCurrentUser(), new { id = "roleCurrentUser" })
+    @Html.Hidden("idCurrentUser", Html.GetUser().UserId, new { id = "idCurrentUser" })
+
+    <div class="navbar" id="navbar">
+        <script type="text/javascript">
+            try { ace.settings.check('navbar', 'fixed') } catch (e) { }
+        </script>
+
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <a href="@Url.Action("Index", "Home")" class="brand">
+                    <small>
+                        <i class="icon-leaf"></i>
+                        FPCS @Html.GetRoleCurrentUserString()
+                    </small>
+                </a>
+                <!--/.brand-->
+
+                @Html.Action("_TopNavPartial", "Shared")
+            </div>
+            <!--/.container-fluid-->
+        </div>
+        <!--/.navbar-inner-->
+    </div>
+
+    <div class="main-container container-fluid">
+        <a class="menu-toggler" id="menu-toggler" href="#">
+            <span class="menu-text"></span>
+        </a>
+
+        @Html.Partial("_SidebarPartial")
+
+        <div class="main-content">
+            @*@Html.Partial("_BreadcrumbPartial")*@
+
+            <div class="main-alert alert alert-block" style="display:none">
+                <button data-dismiss="alert" class="close" type="button">
+                    <i class="icon-remove"></i>
+                </button>
+                <i class="icon-bullhorn"></i>
+                <span class="main-alert-text"></span>
+            </div>
+
+            <div class="page-content">
+                @if (ViewBag.Header != null)
+                {
+                    <div class="page-header position-relative">
+                        <h1>
+                            @ViewBag.Header
+                            @if (ViewBag.SubHeader != null)
+                            {
+                                <small>
+                                    <i class="icon-double-angle-right"></i>
+                                    @ViewBag.SubHeader
+                                </small>
+                            }
+                        </h1>
+                    </div>
+                    <!--/.page-header-->
+                }
+
+                @RenderBody()
+            </div>
+            <!--/.page-content-->
+
+           @Html.Partial("_SettingsPartial")
+        </div>
+        <!--/.main-content-->
+    </div>
+    <!--/.main-container-->
+
+    <!--#dialog-message-->
+    <div id="dialog-message" class="hide"></div>
+
+    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-small btn-inverse">
+        <i class="icon-double-angle-up icon-only bigger-110"></i>
+    </a>
+
+    <!--basic scripts-->
+
+    <!--[if !IE]>-->
+
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='/Scripts/jquery-2.0.3.min.js'>" + "<" + "/script>");
+    </script>
+
+    <!--<![endif]-->
+
+    <!--[if IE]>
+        <script type="text/javascript">
+         window.jQuery || document.write("<script src='/Scripts/jquery-1.10.2.min.js'>"+"<"+"/script>");
+        </script>
+        <![endif]-->
+
+    <script type="text/javascript">
+        if ("ontouchend" in document) document.write("<script src='/Scripts/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+    </script>
+    <script src="/Scripts/bootstrap.min.js"></script>
+    <script src="/Scripts/jquery-migrate-1.2.1.min.js"></script>
+
+    <!--page specific plugin scripts-->
+
+    <script src="/Scripts/bootstrap-tag.min.js"></script>
+    <script src="/Scripts/jquery.hotkeys.min.js"></script>
+    <script src="/Scripts/bootstrap-wysiwyg.min.js"></script>
+    <script src="/Scripts/jquery-ui-1.10.3.min.js"></script>
+    <script src="/Scripts/jquery.ui.touch-punch.min.js"></script>
+    <script src="/Scripts/jquery.slimscroll.min.js"></script>
+    <script src="/Scripts/date-time/bootstrap-datepicker.min.js"></script>
+    <script src="/Scripts/date-time/bootstrap-timepicker.min.js"></script>
+    <script src="/Scripts/date-time/jquery.maskedinput.js"></script>
+    <script src="/Scripts/jquery.autosize-min.js"></script>
+    <script src="/Scripts/chosen.jquery.min.js"></script>
+    <script src="/Scripts/fuelux.spinner.min.js"></script>
+    <script src="/Scripts/jquery.scrolltable.js"></script>
+    <script src="/Scripts/jquery.alerts.js"></script>
+    
+    <!--ace scripts-->
+    <script src="/Scripts/ace-elements.min.js"></script>
+    <script src="/Scripts/ace.min.js"></script>
+    <script src="/Scripts/bootstrap-editable.min.js"></script>
+    <script src="/Scripts/editableQtr.js"></script>
+    <script src="/Scripts/editableSem.js"></script>
+    <script src="/Scripts/editableAmp.js"></script>
+
+    <!--inline scripts related to this page-->
+    <script src="/Scripts/fpcs.base.js"></script>
+    <script src="/Scripts/fpcs.topNav.js"></script>
+    <script src="/Scripts/fpcs.jqGrid.js"></script>
+    <script src="/Scripts/fpcs.family.js"></script>
+    <script src="/Scripts/fpcs.monthlyContactLog.js"></script>
+    <script src="/Scripts/fpcs.guardian.js"></script>
+    <script src="/Scripts/fpcs.student.js"></script>
+    <script src="/Scripts/fpcs.teacher.js"></script>
+    <script src="/Scripts/fpcs.user.js"></script>
+    <script src="/Scripts/fpcs.schoolYear.js"></script>
+    <script src="/Scripts/fpcs.asdCourse.js"></script>
+    <script src="/Scripts/fpcs.fpcsCourse.js"></script>
+    <script src="/Scripts/fpcs.fpcsGoodService.js"></script>
+    <script src="/Scripts/fpcs.studentPacket.js"></script>
+    <script src="/Scripts/fpcs.studentPacket2.js"></script>
+    <script src="/Scripts/fpcs.goodService.js"></script>
+    <script src="/Scripts/fpcs.dataStudentPacket.js"></script>
+    <script src="/Scripts/fpcs.vendor.js"></script>
+    <script src="/Scripts/fpcs.ILP.js"></script>
+    <script src="/Scripts/fpcs.ILPBank.js"></script>
+    <script src="/Scripts/fpcs.enrollmentList.js"></script>
+    <script src="/Scripts/fpcs.studentPacketCourseAlert.js"></script>
+    <script src="/Scripts/fpcs.signedCourse.js"></script>
+    <script src="/Scripts/fpcs.instructor.js"></script>
+    <script src="/Scripts/fpcs.grade.js"></script>
+    <script src="/Scripts/fpcs.transfer.js"></script>
+    <script src="/Scripts/fpcs.subject.js"></script>
+    <script src="/Scripts/fpcs.import.js"></script>
+    <script src="/Scripts/fpcs.dashboard.js"></script>
+    @*<script src="/Scripts/bootbox.min.js"></script>*@
+
+    @*@Scripts.Render("~/bundles/jquery")*@
+
+    <script type="text/javascript">
+        jQuery(function ($) {
+            fpcs.initTitleForDialog();
+            fpcs.topNav.initSchoolYear();
+            @if(ViewBag.Message != null)
+            {
+                @:fpcs.showMessage("@ViewBag.Message");
+            }
+        });
+    </script>
+
+    @RenderSection("scripts", required: false)
+
+    <div id="shadow" class="shadow_popup" style="display:none">
+
+    </div>
+
+    <div id="loader" class="popup" style="display:none">
+        <img src="~/Content/images/ajax-loader.gif" width="100%" height="100%" />
+    </div>
+</body>
+</html>

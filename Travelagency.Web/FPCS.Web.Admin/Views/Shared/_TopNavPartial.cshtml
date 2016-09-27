@@ -1,0 +1,85 @@
+﻿@model FPCS.Web.Admin.Models.Shared.TopNavModel
+
+<ul class="nav ace-nav pull-right">
+    @if(Model.SessionUser.Role == FPCS.Data.Enums.Role.Guardian)
+    { 
+    <li class="emailUs">
+        <a href="mailto:OLS@fpcs.net">Having problems? Email us: OLS@fpcs.net</a>
+    </li>
+    }
+    @if (Model.SessionUser != null)
+    {
+        if (Model.SessionSchoolYear != null)
+        {
+        <li class="grey">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                <i class="icon-calendar"></i>
+                School Year @Model.SessionSchoolYear.Name
+            </a>
+            <ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-closer">
+                @if (Model.SessionUser.Role == FPCS.Data.Enums.Role.Admin)
+                {
+                    <li>
+                        <a href="@Url.Action("Index", "SchoolYear", new { year = Model.SessionSchoolYear.Year })">
+                            <i class="btn btn-mini btn-pink icon-cogs"></i>
+                            View global settings for this year
+                        </a>
+                    </li>
+                }
+                <li class="cancelClick">
+                    @Html.DropDownList("TopSchoolYear", new SelectList(Model.SchoolYears, "Value", "Text", Model.SessionSchoolYear.Year))
+                </li>
+                <li></li>
+            </ul>
+        </li>
+        }
+        <li class="light-blue">
+
+            <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                <img class="nav-user-photo" src="/Images/avatar2.png" alt="Jason's Photo" />
+                <span class="user-info">
+                    <small>Welcome,</small>
+                    @Model.SessionUser.FirstName
+                </span>
+
+                <i class="icon-caret-down"></i>
+            </a>
+
+            <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">
+
+                @*<li>
+                    <a href="#">
+                        <i class="icon-cog"></i>
+                        Settings
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="icon-user"></i>
+                        Profile
+                    </a>
+                </li>
+
+                <li class="divider"></li>*@
+
+                <li>
+                    <a href="javascript:document.getElementById('logoutForm').submit()"><i class="icon-off"></i>Logout</a>
+                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+                    }
+                </li>
+
+            </ul>
+        </li>
+    }
+    else
+    {
+        <li class="light-blue">
+            <a href="@Url.Action("Login", "Account")" class="loginLink"><i class="icon-signin"></i>Login</a>
+        </li>
+    }
+
+</ul>
+<!--/.ace-nav-->

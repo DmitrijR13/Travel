@@ -1,0 +1,66 @@
+﻿@model FPCS.Web.Admin.Models.Home.IndexGuardianModel
+
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+@section Scripts {
+    <script type="text/javascript">
+        jQuery(function ($) {
+            fpcs.dashboard.initGuardianPage();
+        });
+    </script>
+}
+
+<div>
+    <h3 class="lighter block green">Students of guardian ...</h3>
+</div>
+
+<table id="studentsTable" class="table table-bordered span6">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(x => x.Students[0].FullName)</th>
+            <th width="195px" class="font_size10"></th>@*Page that allows you to manage classes. Also displays courses and budget details*@
+            @*<th width="160px" class="font_size10">Page that allows you to manage transfers</th>*@
+            @*<th width="160px" class="font_size10">Contains Student Profile and Enrollment Information</th>*@
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model.Students)
+        {
+            <tr>
+                <td class="vertical_middle">
+                    @Html.HiddenFor(x => item.DbUserId, new { @class = "hdnStudent" })
+                    @Html.DisplayTextFor(x => item.FullName)
+                </td>
+                <td>
+                    <button class="btn btn-purple btnStudentPacketBudget" title="Page that allows you to manage classes. Also displays courses and budget details">Student Packet Budget</button>
+                </td>
+                @*<td>
+                    <button class="btn btn-purple btnTransferManager" title="Page that allows you to manage transfers">Transfer Manager</button>
+                </td>*@
+                @*<td>
+                    <button class="btn btn-purple btnStudentProfile" title="Contains Student Profile and Enrollment Information">Student Profile</button>
+                </td>*@
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="span12">
+    <div>
+        <h3 class="lighter block green">Find the information you need ...</h3>
+    </div>
+
+    <div>
+        @*<button id="btnFPCSCourse" class="btn btn-info">Search for FPCS Course</button>*@
+        <button id="btnTeacher" class="btn btn-info">Search for Teachers</button>
+        <button id="btnVendor" class="btn btn-info">Search for Vendors</button>
+        <button id="btnReimbursement" class="btn btn-info" data-family-id="@Model.FamilyId">Print Reimbursement</button>
+        @*<button class="btn btn-info">Search for ILP's</button>*@
+        @*<button id="btnGrades" class="btn btn-info">View Grades</button>*@
+        @*<button id="btnFamilyManager" class="btn btn-light">Family Manager</button>*@
+    </div>
+</div>

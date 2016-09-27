@@ -1,0 +1,55 @@
+﻿@model FPCS.Web.Admin.Models.User.UserDetailsModel
+
+<div class="row-fluid">
+    <div class="span12 ">
+
+        <div class="form-horizontal">
+            <div class="control-group">
+                <div class="controls">
+                    <h3 class="lighter block green">On this page you can view the User account</h3>
+                </div>
+            </div>
+
+            @Html.HiddenFor(x => x.DbUserId)
+
+            <div class="control-group">
+                @Html.LabelFor(x => x.FullName, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(x => x.FullName, new { @class = "span9", @readonly = "true" })
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(x => x.Role, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(x => x.Role, new { @class = "span9", @readonly = "true" })
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(x => x.Email, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(x => x.Email, new { @class = "span9", @readonly = "true" })
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(x => x.Login, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(x => x.Login, new { @class = "span9", @readonly = "true" })
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    @Html.CheckBoxFor(x => x.IsLocked, new { @readonly = "true", disabled = "true" })
+                    @Html.LabelFor(x => x.IsLocked, new { @class = "lbl" })
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button onclick="javascript:fpcs.closeDialog()" class="btn btn-info" type="button">
+                    <i class="icon-reply bigger-110"></i>
+                    Close
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,49 @@
+﻿@model FPCS.Web.Admin.Models.User.ProfileDetailsModel
+
+@{
+    ViewBag.Title = "Profile";
+    ViewBag.Header = "Profile";
+    ViewBag.SubHeader = "Profile User";
+}
+
+<div class="row-fluid">
+    <div class="span12 ">
+
+        <div class="form-horizontal">
+            <div class="control-group">
+                <div class="controls">
+                    <h3 class="lighter block green">On this page you can view the User account</h3>
+                </div>
+            </div>
+
+            @Html.HiddenFor(x => x.DbUserId)
+
+            <div class="control-group">
+                @Html.LabelFor(x => x.FullName, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(x => x.FullName, new { @class = "span9", @readonly = "true" })
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(x => x.Email, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(x => x.Email, new { @class = "span9", @readonly = "true" })
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(x => x.Login, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(x => x.Login, new { @class = "span9", @readonly = "true" })
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button onclick="javascript:location.href='@Url.Action("ProfileEdit")'" class="btn btn-info" type="button">
+                    <i class="icon-edit bigger-110"></i>
+                    Edit profile
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+Этот файл используется в процессе публикации или упаковки вашего веб-проекта. Вы можете настроить поведение процесса,
+изменив этот файл MSBuild. Дополнительные сведения см. по адресу http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <LastUsedBuildConfiguration>Release</LastUsedBuildConfiguration>
+    <LastUsedPlatform>Any CPU</LastUsedPlatform>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA855MXbYPCUagZkUOIh+EEAAAAAACAAAAAAAQZgAAAAEAACAAAACiB/P+rrvrjbcAkhpsEeID78MBe+ZD7qkF2H5o+1C4NgAAAAAOgAAAAAIAACAAAAAcrem1+1fwksK/S4n2LmA2xXLNRW3Z9Aj9szeCmpt+yoAAAABuOqnetlBA/x6GXwA1+UW8XEv3hb5hdlvYCdoO+i9DO2CHS+H63WuzZ6y+YCjM2gbYI1/jBWEwaeVkFbLniOsNdlt/gKaiemhRZzpS293xMBxJV/31moGGXwC+yQfhjCkf3Ev8MXK+1CECyheu+5wojUbZie9c3QAUZWTkUA+hS0AAAADymd+KC9iCyySlMt9ib8QtQ4Rjig59JE+2oevjPePjpefNBiQs4NrCM131LUusy9vAy9L5GeGOJG0HiD/ntwVp</EncryptedPassword>
+  </PropertyGroup>
+</Project>
