@@ -122,9 +122,11 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repo\IFizRepo.cs" />
     <Compile Include="Repo\Impl\AdminRepo.cs" />
     <Compile Include="Repo\IAdminRepo.cs" />
     <Compile Include="Repo\IDbUserRepo.cs" />
+    <Compile Include="Repo\Impl\FizRepo.cs" />
     <Compile Include="Repo\Impl\DbUserRepo.cs" />
     <Compile Include="Repo\Impl\RepoBase.cs" />
     <Compile Include="Repo\IRepoBase.cs" />

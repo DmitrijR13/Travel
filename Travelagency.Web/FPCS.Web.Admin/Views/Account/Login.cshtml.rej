@@ -1,0 +1,12 @@
+diff a/Travelagency.Web/FPCS.Web.Admin/Views/Account/Login.cshtml b/Travelagency.Web/FPCS.Web.Admin/Views/Account/Login.cshtml	(rejected hunks)
+@@ -59,8 +59,8 @@
+                             <div class="center">
+                                 <h1>
+                                     <i class="icon-leaf green"></i>
+-                                    <span class="red">FPCS</span>
+-                                    <span class="white">Login page</span>
++                                    <span class="red">Центр туризма У-Ра</span>
++                                    <span class="white">Страница авторизации</span>
+                                 </h1>
+                             </div>
+                         </div>

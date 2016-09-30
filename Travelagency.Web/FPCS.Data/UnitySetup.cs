@@ -16,7 +16,8 @@ namespace FPCS.Data
 
             container.RegisterType<IDbUserRepo, DbUserRepo>();
             container.RegisterType<IAdminRepo, AdminRepo>();
-            
+            container.RegisterType<IFizRepo, FizRepo>();
+
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<StudentManagementContext, Configuration>());
 
             return container;

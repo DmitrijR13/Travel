@@ -23,7 +23,7 @@ namespace FPCS.Data.Entities
 
         public WayOfInform WayOfInform { get; set; }
 
-        public DateTimeOffset DateOfBirth { get; set; }
+        public DateTimeOffset? DateOfBirth { get; set; }
 
         public Boolean IsDeleted { get; set; }
 

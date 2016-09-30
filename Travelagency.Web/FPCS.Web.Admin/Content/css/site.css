@@ -574,3 +574,8 @@ td.packet-for-cost {
     width: auto !important;
     text-align: left !important;
 }
+
+.background-test {
+    width: auto !important;
+    background: url('../img/logo1.png') center center repeat !important;
+}

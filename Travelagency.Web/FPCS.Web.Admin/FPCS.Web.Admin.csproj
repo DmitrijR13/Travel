@@ -247,6 +247,7 @@
     <Compile Include="Code\RenderScriptsExtensions.cs" />
     <Compile Include="Code\VirtualPathHandler.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\FizController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -255,6 +256,8 @@
     </Compile>
     <Compile Include="Helpers\Access\AccessAction.cs" />
     <Compile Include="Helpers\Access\Models\AccessActionModel.cs" />
+    <Compile Include="Models\Fiz\FizCreateModel.cs" />
+    <Compile Include="Models\Fiz\FizIndexModel.cs" />
     <Compile Include="Models\Home\IndexGuardianModel.cs" />
     <Compile Include="Models\Home\StudentModel.cs" />
     <Compile Include="Models\Account\LoginModel.cs" />
@@ -329,6 +332,7 @@
     <Content Include="Content\img\important.gif" />
     <Content Include="Content\img\info.gif" />
     <Content Include="Content\img\loading.gif" />
+    <Content Include="Content\img\logo1.png" />
     <Content Include="Content\img\tick.png" />
     <Content Include="Content\img\title.gif" />
     <Content Include="Content\themes\base\accordion.css" />
@@ -391,12 +395,13 @@
     <Content Include="Scripts\fpcs.ilpBank.js" />
     <Content Include="Scripts\fpcs.dashboard.js" />
     <Content Include="Scripts\fpcs.signedPacket.js" />
+    <Content Include="Scripts\travel.js" />
     <Content Include="Scripts\fpcs.studentPacket2.js" />
-    <None Include="Scripts\jquery-3.1.0.intellisense.js" />
-    <Content Include="Scripts\jquery-3.1.0.js" />
-    <Content Include="Scripts\jquery-3.1.0.min.js" />
-    <Content Include="Scripts\jquery-3.1.0.slim.js" />
-    <Content Include="Scripts\jquery-3.1.0.slim.min.js" />
+    <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.1.1.js" />
+    <Content Include="Scripts\jquery-3.1.1.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
     <Content Include="Scripts\jquery-migrate-1.2.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
@@ -496,6 +501,8 @@
     <Content Include="Scripts\jquery.ui.touch-punch.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.1.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -542,8 +549,8 @@
     <Content Include="Views\Shared\_SidebarPartial.cshtml" />
     <Content Include="Views\Shared\_SidebarPartial.cshtml.orig" />
     <Content Include="Views\Shared\_TopNavPartial.cshtml" />
-    <Content Include="Scripts\jquery-3.1.0.slim.min.map" />
-    <Content Include="Scripts\jquery-3.1.0.min.map" />
+    <Content Include="Views\Fiz\Index.cshtml" />
+    <Content Include="Views\Fiz\_Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

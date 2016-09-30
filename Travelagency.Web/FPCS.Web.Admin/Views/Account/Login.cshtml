@@ -1,7 +1,7 @@
 ﻿@model FPCS.Web.Admin.Models.Account.LoginModel
 
 @{
-    ViewBag.Title = "Login Page";
+    ViewBag.Title = "Страница авторизации";
     Layout = null;
 }
 
@@ -59,8 +59,8 @@
                             <div class="center">
                                 <h1>
                                     <i class="icon-leaf green"></i>
-                                    <span class="red">FPCS</span>
-                                    <span class="white">Login page</span>
+                                    <span class="red">Центр туризма У-Ра</span>
+                                    <span class="white">Страница авторизации</span>
                                 </h1>
                             </div>
                         </div>
@@ -74,7 +74,7 @@
                                         <div class="widget-main">
                                             <h4 class="header blue lighter bigger">
                                                 <i class="icon-coffee green"></i>
-                                                Please Enter Your Information
+                                                Введите логин и пароль
                                             </h4>
 
                                             <div class="space-6"></div>
@@ -106,7 +106,7 @@
                                                         <label class="inline">
                                                             @Html.CheckBoxFor(m => m.RememberMe, new { @checked = "checked" })
                                                             @*<input id="RememberMe" type="checkbox" value="true" name="RememberMe" class="ace"/>*@
-                                                            <span class="lbl">Remember Me</span>
+                                                            <span class="lbl">Запомнить</span>
                                                         </label>
 
                                                         <button onclick="javascript:$('#loginForm').submit()" class="width-35 pull-right btn btn-small btn-primary">
