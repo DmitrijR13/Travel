@@ -16,7 +16,7 @@ namespace FPCS.Web.Admin.Controllers
 		{
 			if (User.Role == Role.Admin)
 			{
-				return RedirectToAction("Index", "Student");
+				return RedirectToAction("Index", "Fiz");
 			}
 
 			return View();

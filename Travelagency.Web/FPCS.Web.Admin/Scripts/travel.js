@@ -1,4 +1,4 @@
-﻿fpcs.student = {
+﻿travel = {
 
     initIndexPage: function () {
         fpcs.jqGrid.initGrid({
@@ -48,7 +48,7 @@
         });
 
         fpcs.jqGrid.initGridResize();
-        fpcs.jqGrid.initFilterToolbar("Student");
+        //fpcs.jqGrid.initFilterToolbar("Student");
 
         if (!fpcs.getIsTeacher() && !fpcs.getIsGuardian()) {
             fpcs.jqGrid.initNavButtons("/Fiz/DeleteAll", travel.showCreateDialog, "Добавить нового клиента");
@@ -192,15 +192,6 @@
         });
     },
 
-
-    initCreateEditDialog: function() {
-        fpcs.student.checkEnrollmentStatus();
-
-        $(document).off("change", "#enrollmentStatus");
-        $(document).on("change", "#enrollmentStatus", function (e) {
-            fpcs.student.checkEnrollmentStatus();
-        });
-    },
 
     reloadGrid: function () {
         jQuery("#gridTable").trigger("reloadGrid")
