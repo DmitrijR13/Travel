@@ -120,10 +120,6 @@
     <Compile Include="Migrations\201609231232044_20160923_FirstMigration.Designer.cs">
       <DependentUpon>201609231232044_20160923_FirstMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201609301156234_30_09_2016_00.cs" />
-    <Compile Include="Migrations\201609301156234_30_09_2016_00.Designer.cs">
-      <DependentUpon>201609301156234_30_09_2016_00.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repo\IFizRepo.cs" />
@@ -150,9 +146,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201609231232044_20160923_FirstMigration.resx">
       <DependentUpon>201609231232044_20160923_FirstMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609301156234_30_09_2016_00.resx">
-      <DependentUpon>201609301156234_30_09_2016_00.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

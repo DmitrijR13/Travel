@@ -18,24 +18,24 @@
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(x => x.FIO, new { @class = "control-label" })
+                @Html.LabelFor(x => x., new { @class = "control-label" })
                 <div class="controls">
                     @Html.TextBoxFor(x => x.FIO, new { placeholder = Html.DisplayNameFor(x => x.FIO), @class = "span9" })
                     @Html.ValidationMessageFor(m => m.FIO)
                 </div>
             </div>
             <div class="control-group">
-                @Html.LabelFor(x => x.Phone, new { @class = "control-label" })
+                @Html.LabelFor(x => x.LastName, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.TextBoxFor(x => x.Phone, new { placeholder = Html.DisplayNameFor(x => x.Phone), @class = "span9" })
-                    @Html.ValidationMessageFor(m => m.Phone)
+                    @Html.TextBoxFor(x => x.LastName, new { placeholder = Html.DisplayNameFor(x => x.LastName), @class = "span9" })
+                    @Html.ValidationMessageFor(m => m.LastName)
                 </div>
             </div>
             <div class="control-group">
-                @Html.LabelFor(x => x.CellPhone, new { @class = "control-label" })
+                @Html.LabelFor(x => x.MiddleInitial, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.TextBoxFor(x => x.CellPhone, new { placeholder = Html.DisplayNameFor(x => x.CellPhone), @class = "span9" })
-                    @Html.ValidationMessageFor(m => m.CellPhone)
+                    @Html.TextBoxFor(x => x.MiddleInitial, new { placeholder = Html.DisplayNameFor(x => x.MiddleInitial), @class = "span9" })
+                    @Html.ValidationMessageFor(m => m.MiddleInitial)
                 </div>
             </div>
             <div class="control-group">
@@ -46,12 +46,112 @@
                 </div>
             </div>
             <div class="control-group">
-                @Html.LabelFor(x => x.FieldOfActivity, new { @class = "control-label" })
+                @Html.LabelFor(x => x.Sex, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.TextBoxFor(x => x.FieldOfActivity, new { placeholder = Html.DisplayNameFor(x => x.FieldOfActivity), @class = "span9" })
-                    @Html.ValidationMessageFor(m => m.FieldOfActivity)
+                    @Html.DropDownListFor(x => x.Sex, Model.Sexes, new { @class = "span9" })
+                    @Html.ValidationMessageFor(m => m.Sex)
                 </div>
             </div>
+            <div class="control-group">
+                @Html.LabelFor(x => x.Grade, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.DropDownListFor(x => x.Grade, Model.Grades, new { @class = "span9" })
+                    @Html.ValidationMessageFor(m => m.Grade)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(x => x.GradYear, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.DropDownListFor(x => x.GradYear, Model.GradYears, new { @class = "span9" })
+                    @Html.ValidationMessageFor(m => m.GradYear)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(x => x.EnrollmentStatus, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.DropDownListFor(x => x.EnrollmentStatus, Model.EnrollmentStatuses, "Select an Option", new { @class = "span9", id = "enrollmentStatus" })
+                    @Html.ValidationMessageFor(m => m.EnrollmentStatus)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(x => x.EnrollmentDate, new { @class = "control-label" })
+                <div class="controls">
+                    <div class="row-fluid input-append">
+                        @Html.TextBoxFor(x => x.EnrollmentDate, "{0:MM/dd/yyyy}", new { placeholder = Html.DisplayNameFor(x => x.EnrollmentDate), @class = "span9 date-picker", data_date_format = "mm/dd/yyyy" })
+                        <span class="add-on">
+                            <i class="icon-calendar"></i>
+                        </span>
+                        @Html.ValidationMessageFor(m => m.EnrollmentDate)
+                    </div>
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(x => x.ZangleID, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(x => x.ZangleID, new { placeholder = Html.DisplayNameFor(x => x.ZangleID), @class = "span9" })
+                    @Html.ValidationMessageFor(m => m.ZangleID)
+                </div>
+            </div>
+
+            <div id="enrollment_status_check">
+                <div class="control-group es">
+                    <div class="controls">
+                        @Html.CheckBoxFor(x => x.IsBirthCertificate, new { id = "isBirthCertificate" })
+                        @Html.LabelFor(x => x.IsBirthCertificate, new { @class = "lbl" })
+                        @Html.ValidationMessageFor(m => m.IsBirthCertificate)
+                    </div>
+                </div>
+                <div class="control-group es">
+                    <div class="controls">
+                        @Html.CheckBoxFor(x => x.IsGradesNotSubmitted, new { id = "isGradesNotSubmitted" })
+                        @Html.LabelFor(x => x.IsGradesNotSubmitted, new { @class = "lbl" })
+                        @Html.ValidationMessageFor(m => m.IsGradesNotSubmitted)
+                    </div>
+                </div>
+                <div class="control-group es">
+                    <div class="controls">
+                        @Html.CheckBoxFor(x => x.IsILPPhilosophy, new { id = "isILPPhilosophy" })
+                        @Html.LabelFor(x => x.IsILPPhilosophy, new { @class = "lbl" })
+                        @Html.ValidationMessageFor(m => m.IsILPPhilosophy)
+                    </div>
+                </div>
+                <div class="control-group es">
+                    <div class="controls">
+                        @Html.CheckBoxFor(x => x.IsMedicalRelease, new { id = "isMedicalRelease" })
+                        @Html.LabelFor(x => x.IsMedicalRelease, new { @class = "lbl" })
+                        @Html.ValidationMessageFor(m => m.IsMedicalRelease)
+                    </div>
+                </div>
+                <div class="control-group es">
+                    <div class="controls">
+                        @Html.CheckBoxFor(x => x.IsProgressReportSignature, new { id = "isProgressReportSignature" })
+                        @Html.LabelFor(x => x.IsProgressReportSignature, new { @class = "lbl" })
+                        @Html.ValidationMessageFor(m => m.IsProgressReportSignature)
+                    </div>
+                </div>
+                <div class="control-group es">
+                    <div class="controls">
+                        @Html.CheckBoxFor(x => x.IsShotRecords, new { id = "isShotRecords" })
+                        @Html.LabelFor(x => x.IsShotRecords, new { @class = "lbl" })
+                        @Html.ValidationMessageFor(m => m.IsShotRecords)
+                    </div>
+                </div>
+                <div class="control-group es">
+                    <div class="controls">
+                        @Html.CheckBoxFor(x => x.IsTestingAgreement, new { id = "isTestingAgreement" })
+                        @Html.LabelFor(x => x.IsTestingAgreement, new { @class = "lbl" })
+                        @Html.ValidationMessageFor(m => m.IsTestingAgreement)
+                    </div>
+                </div>
+                <div class="control-group es">
+                    <div class="controls">
+                        @Html.CheckBoxFor(x => x.IsOther, new { id = "isOther" })
+                        @Html.LabelFor(x => x.IsOther, new { @class = "lbl" })
+                        @Html.ValidationMessageFor(m => m.IsOther)
+                    </div>
+                </div>
+            </div>
+
             <div class="control-group">
                 @Html.LabelFor(x => x.DateOfBirth, new { @class = "control-label" })
                 <div class="controls">
@@ -65,17 +165,55 @@
                 </div>
             </div>
             <div class="control-group">
-                @Html.LabelFor(x => x.WayOfInform, new { @class = "control-label" })
+                @Html.LabelFor(x => x.WithdrawalDate, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.DropDownListFor(x => x.WayOfInform, Model.WayOfInforms, new { @class = "span9" })
-                    @Html.ValidationMessageFor(m => m.WayOfInform)
+                    <div class="row-fluid input-append">
+                        @Html.TextBoxFor(x => x.WithdrawalDate, "{0:MM/dd/yyyy}", new { placeholder = Html.DisplayNameFor(x => x.WithdrawalDate), @class = "span5 date-picker", data_date_format = "mm/dd/yyyy" })
+                        <span class="add-on">
+                            <i class="icon-calendar"></i>
+                        </span>
+                        @Html.ValidationMessageFor(m => m.WithdrawalDate)
+                    </div>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="span10">
+                    @Html.LabelFor(x => x.PrivateSchoolName, new { @class = "" })
+                </div>
+                <div class="controls">
+                    @Html.TextBoxFor(x => x.PrivateSchoolName, new { placeholder = "Private School Name", @class = "span9" })
+                    @Html.ValidationMessageFor(m => m.PrivateSchoolName)
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    @Html.CheckBoxFor(x => x.IsGraduateFromFPCS)
+                    @Html.LabelFor(x => x.IsGraduateFromFPCS, new { @class = "lbl" })
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="span10">
+                    @Html.LabelFor(x => x.PercentagePlanningEnroll, new { @class = "" })
+                </div>
+                <div class="controls">
+                    @Html.DropDownListFor(x => x.PercentagePlanningEnroll, Model.PercentsInSchoolDistrict, new { @class = "span9" })
+                    @Html.ValidationMessageFor(m => m.PercentagePlanningEnroll)
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="span10">
+                    @Html.LabelFor(x => x.SponsorTeacherId, new { @class = "" })
+                </div>
+                <div class="controls">
+                    @Html.DropDownListFor(x => x.SponsorTeacherId, Model.SponsorTeachers, new { @class = "span9" })
+                    @Html.ValidationMessageFor(m => m.SponsorTeacherId)
                 </div>
             </div>
 
             <div class="form-actions">
-                <button class="btn btn-success createFizSend" type="button">
+                <button class="btn btn-success createStudentSend" type="button">
                     <i class="icon-ok bigger-110"></i>
-                    Сохранить
+                    Save student
                 </button>
                 <button onclick="javascript:fpcs.closeDialog()" class="btn btn-info" type="button">
                     <i class="icon-reply bigger-110"></i>
@@ -90,7 +228,7 @@
 <script type="text/javascript">
     jQuery(function ($) {
         fpcs.initDatePicker();
-        //travel.initCreateEditDialog();
+        travel.initCreateEditDialog();
     });
 </script>
 @Html.Script(Scripts.Render("~/bundles/jqueryval"))

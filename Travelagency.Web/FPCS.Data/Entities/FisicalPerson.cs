@@ -7,7 +7,7 @@ using FPCS.Data.Enums;
 
 namespace FPCS.Data.Entities
 {
-    public class FisicalPerson
+    class FisicalPerson
     {
         public Int64 PersonId { get; set; }
 
