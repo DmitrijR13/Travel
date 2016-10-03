@@ -52,8 +52,10 @@ namespace FPCS.Web.Admin.Controllers
         private List<FizIndexModel> GetData(IUnitOfWork uow, GridOptions options, FizListOptions fizListOptions)
         {
             var repo = uow.GetRepo<IFizRepo>();
+            var fltWayOfInform = fizListOptions.WayOfInform;
 
             var dbList = repo.GetAllFiz()
+                .Where(x => ((fltWayOfInform.HasValue && x.WayOfInform == fltWayOfInform.Value) || !fltWayOfInform.HasValue ))
                 .Select(x => new
                 {
                     PersonId = x.PersonId,
