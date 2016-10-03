@@ -27,7 +27,7 @@ namespace FPCS.Web.Admin.Models.Fiz
         [Display(Name = "Email")]
         public String Email { get; set; }
 
-        [Display(Name = "Grade Year")]
+        [Display(Name = "FieldOfActivity")]
         public String FieldOfActivity { get; set; }
 
         [Display(Name = "Дата рождения")]

@@ -21,9 +21,9 @@ namespace FPCS.Web.Admin.Models.Fiz
 
         public String Email { get; set; }
 
-        public WayOfInform WayOfInform { get; set; }
+        public String WayOfInform { get; set; }
 
-        public DateTimeOffset? DateOfBirth { get; set; }
+        public String DateOfBirth { get; set; }
 
         public void Init()
         {
@@ -39,7 +39,6 @@ namespace FPCS.Web.Admin.Models.Fiz
                         Phones = x.Phone + (x.CellPhone != "" ? "(" + x.CellPhone + ")" : ""),
                         FieldOfActivity = x.FieldOfActivity,
                         Email = x.Email,
-                        DateOfBirth = x.DateOfBirth,
                         WayOfInform = x.WayOfInform
                     })
                     .ToList();

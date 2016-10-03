@@ -22,7 +22,7 @@ namespace FPCS.Data.Repo.Impl
 
         public IQueryable<FisicalPerson> GetAllFiz()
         {
-            return GetAll().Where(x => x.UpdatedDate >= new DateTime(2016,9,1));
+            return GetAll().Where(x => x.IsDeleted == false);
         }
 
         public FisicalPerson Add(String fio, String cellPhone, String phone, String fieldOfActivity, String email, WayOfInform wayOfInform, DateTimeOffset? dateOfBirth)

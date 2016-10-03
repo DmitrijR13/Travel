@@ -83,6 +83,7 @@ namespace FPCS.Web.Admin
                         "~/Scripts/fpcs.monthlyContactLog.js",
                         "~/Scripts/fpcs.guardian.js",
                         "~/Scripts/fpcs.student.js",
+                        "~/Scripts/fizPerson.js",
                         "~/Scripts/fpcs.teacher.js",
                         "~/Scripts/fpcs.user.js",
                         "~/Scripts/fpcs.schoolYear.js",

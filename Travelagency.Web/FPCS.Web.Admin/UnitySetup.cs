@@ -8,8 +8,6 @@ namespace FPCS.Web.Admin
     {
         public IUnityContainer RegisterTypes(IUnityContainer container)
         {
-
-
             return container;
         }
     }

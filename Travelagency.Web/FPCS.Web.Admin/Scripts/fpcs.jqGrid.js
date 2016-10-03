@@ -141,8 +141,8 @@
 				            details = !showDetailsButton ? '' : '<td title="View details"><div rowid="' + cl + '" class="ui-pg-div gridRowDetails"><span class="ui-icon icon-zoom-in grey"></span></div></td>';
 				        }
 
-				        var edit = !showEditButton ? '' : '<td title="Edit"><div rowid="' + cl + '" class="ui-pg-div gridRowEdit"><span class="ui-icon icon-pencil blue"></span></div></td>';
-				        var del = !showDeleteButton ? '' : '<td title="Delete"><div rowid="' + cl + '" class="ui-pg-div gridRowDelete"><span class="ui-icon icon-trash red"></span></div></td>';
+				        var edit = !showEditButton ? '' : '<td title="Редактировать"><div rowid="' + cl + '" class="ui-pg-div gridRowEdit"><span class="ui-icon icon-pencil blue"></span></div></td>';
+				        var del = !showDeleteButton ? '' : '<td title="Удалить"><div rowid="' + cl + '" class="ui-pg-div gridRowDelete"><span class="ui-icon icon-trash red"></span></div></td>';
 
 				        var rowButtons = "";
 				        var rowButtonsConfigs = options["rowButtons"];

@@ -169,6 +169,7 @@ fpcs.showDialog = function(title, html, width, isTop) {
     var position = ['center'];
     if (isTop == undefined || isTop) { position = ['top', 20]; }
     $("#dialog-message").html(html);
+    var d = $("#dialog-message");
     var dialog = $("#dialog-message").dialog({
         resizable: false,
         draggable: true,

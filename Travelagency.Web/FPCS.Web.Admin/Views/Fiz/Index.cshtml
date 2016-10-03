@@ -1,7 +1,11 @@
-﻿@{
+﻿@model FPCS.Web.Admin.Models.Fiz.FizIndexModel
+@using FPCS.Data.Enums
+@{
     ViewBag.Title = "База клиентов физических лиц";
     ViewBag.Header = "База клиентов физических лиц";
 }
+
+@Html.Hidden("WayOfInforms", Model.WayOfInform, new { id = "wayOfInforms" })
 
 <div class="row-fluid">
     <div class="span12 gridWrapper">
@@ -12,12 +16,6 @@
 
 @section Styles {
     @Styles.Render("~/Content/css/jqGrid")
-
-    <style type="text/css">
-        #ddlStudent {
-            width: 250px !important;
-        }
-    </style>
 }
 
 @section Scripts {
@@ -25,7 +23,7 @@
 
     <script type="text/javascript">
         jQuery(function ($) {
-            travel.initIndexPage();
+            fizPerson.initIndexPage();
 
             window.addEventListener("resize", function () {
                 $('.chzn-container').innerWidth($('#selecciona_paciente_estadisticas_form').innerWidth());
