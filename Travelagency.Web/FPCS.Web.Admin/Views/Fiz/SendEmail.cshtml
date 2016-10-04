@@ -1,0 +1,50 @@
+﻿@model FPCS.Web.Admin.Models.Fiz.FizSendEmailModel
+
+<div class="row-fluid">
+    <div class="span12 ">
+
+        @using (Html.BeginForm("SendEmail", "Fiz", FormMethod.Post, new { id = "sendEmailForm", @class = "form-horizontal" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="control-group">
+                <div class="controls">
+                    <h3 class="lighter block green">Заполните поля для рассылки письма</h3>
+                </div>
+            </div>
+
+            <div class="controls">
+                @Html.ValidationSummary(true)
+            </div>
+            @Html.HiddenFor(x => x.Emails);
+            <div class="control-group">
+                @Html.LabelFor(x => x.Theme, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(x => x.Theme, new { placeholder = Html.DisplayNameFor(x => x.Theme), @class = "span9" })
+                    @Html.ValidationMessageFor(m => m.Theme)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(x => x.Body, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextAreaFor(x => x.Body, new { placeholder = Html.DisplayNameFor(x => x.Body), @class = "span9" })
+                    @Html.ValidationMessageFor(m => m.Body)
+                </div>
+            </div>
+            
+
+            <div class="form-actions">
+                <button class="btn btn-success emailSend" type="button">
+                    <i class="icon-ok bigger-110"></i>
+                   Отправить
+                </button>
+                <button onclick="javascript:fpcs.closeDialog()" class="btn btn-info" type="button">
+                    <i class="icon-reply bigger-110"></i>
+                    Отменить
+                </button>
+            </div>
+        }
+
+    </div>
+</div>
+@Html.Script(Scripts.Render("~/bundles/jqueryval"))

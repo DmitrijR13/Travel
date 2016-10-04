@@ -57,12 +57,13 @@
         
        
         //fpcs.jqGrid.initNavSendEmailButton(fizPerson.initSendEmail);
-        fpcs.jqGrid.initNavSendEmailButton(fizPerson.initSendEmail, "Отправить email");
+        fpcs.jqGrid.initNavSendEmailButton(fizPerson.showSendEmailDialog, "Отправить email");
 
         //fizPerson.initDetailsDialog();
         fizPerson.initCreateDialogSend();
         fizPerson.initEditDialog();
         fizPerson.initDeleteOneEntity();
+        fizPerson.sendEmail();
 
         $(window).unload(function () {
             fpcs.jqGrid.saveLocalStorage("FizPerson");
@@ -88,12 +89,6 @@
         });
     },
 
-    initSendEmail: function () {
-        var selRowIds = jQuery('#gridTable').jqGrid('getGridParam', 'selarrrow');
-        fpcs.executeService("/Fiz/SendEmail", selRowIds, function (data) {
-            
-        });
-    },
 
     initCreateDialogSend: function () {
         $(document).off("click", ".createFizPersonSend");
@@ -114,6 +109,13 @@
     showEditDialog: function (id) {
         fpcs.getPartial('/Fiz/_Edit/' + id, function (data, textStatus) {
             fpcs.showDialog("Изменить данные о клиенте", data);
+        });
+    },
+
+    showSendEmailDialog: function () {
+        var selRowIds = jQuery('#gridTable').jqGrid('getGridParam', 'selarrrow');
+        fpcs.getPartial('/Fiz/SendEmail?ids=' + selRowIds, function (data, textStatus) {
+            fpcs.showDialog("Отправить письма", data);
         });
     },
 
@@ -146,6 +148,23 @@
             var url = "/Fiz/Delete/" + id;
             fpcs.executeServiceWithConfirm(url, null, function () {
                 fizPerson.reloadGrid();
+            });
+        });
+    },
+
+    sendEmail: function () {
+        $(document).off("click", ".emailSend");
+        $(document).on("click", ".emailSend", function (e) {
+            e.preventDefault();
+            fpcs.sendForm("sendEmailForm", function (data, textStatus) {
+                debugger;
+                if (typeof data == "object" && data.ErrorCode == 200) {
+                    fizPerson.reloadGrid();
+                    fpcs.closeDialog();
+                }
+                else {
+                    fpcs.showDialog("Отправить письма", data);
+                }
             });
         });
     },

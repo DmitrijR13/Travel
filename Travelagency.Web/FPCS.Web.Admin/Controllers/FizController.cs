@@ -176,18 +176,35 @@ namespace FPCS.Web.Admin.Controllers
             return PartialView(model);
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult SendEmail(String[] ids)
         {
             var id = String.Join(",", ids);
+            String emails = String.Empty;
             using (var uow = UnityManager.Resolve<IUnitOfWork>())
             {
                 var repo = uow.GetRepo<IFizRepo>();
                 var dbEntity = repo.GetEmailById(id);
-                var emails = String.Join(",", dbEntity.Select(x => x.Email.Trim()));
-                EmailSender.Instance.Send(emails, "Test", "Test Test");
+                emails = String.Join(",", dbEntity.Select(x => x.Email.Trim()));
             }
-            return JsonRes(Status.OK);
+            var model = new FizSendEmailModel
+            {
+                Body = "",
+                Theme = "",
+                Emails = emails
+            };
+            return PartialView(model);
+        }
+
+        [HttpPost]
+        public ActionResult SendEmail(FizSendEmailModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                EmailSender.Instance.Send(model.Emails, model.Theme, model.Body);
+                return JsonRes(Status.OK, "OK");
+            }
+            return PartialView(model);
         }
 
 

@@ -290,7 +290,6 @@
 
 	initNavSendEmailButton: function (addEntityFunc, addEntityFuncTitle) {
 	    if (addEntityFunc != null) {
-	        debugger;
 	        grid.jqGrid('navButtonAdd', pagerSelector, {
 	            caption: "",
 	            title: addEntityFuncTitle != undefined ? addEntityFuncTitle : "Отправить email",

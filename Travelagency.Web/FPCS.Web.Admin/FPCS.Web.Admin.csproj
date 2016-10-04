@@ -256,6 +256,7 @@
     </Compile>
     <Compile Include="Helpers\Access\AccessAction.cs" />
     <Compile Include="Helpers\Access\Models\AccessActionModel.cs" />
+    <Compile Include="Models\Fiz\FizSendEmailModel.cs" />
     <Compile Include="Models\Fiz\FizEditModel.cs" />
     <Compile Include="Models\Fiz\FizCreateModel.cs" />
     <Compile Include="Models\Fiz\FizIndexModel.cs" />
@@ -572,6 +573,7 @@
     <Content Include="Views\Fiz\Index.cshtml" />
     <Content Include="Views\Fiz\_Create.cshtml" />
     <Content Include="Views\Fiz\_Edit.cshtml" />
+    <Content Include="Views\Fiz\SendEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
