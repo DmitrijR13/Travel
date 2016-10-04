@@ -288,6 +288,21 @@
 	    }
 	},
 
+	initNavSendEmailButton: function (addEntityFunc, addEntityFuncTitle) {
+	    if (addEntityFunc != null) {
+	        debugger;
+	        grid.jqGrid('navButtonAdd', pagerSelector, {
+	            caption: "",
+	            title: addEntityFuncTitle != undefined ? addEntityFuncTitle : "Отправить email",
+	            buttonicon: "icon-inbox blue",
+	            onClickButton: function () {
+	                addEntityFunc.call();
+	            },
+	            position: "first"
+	        });
+	    }
+	},
+
 	initNavPrintButton: function (printFunc, caption) {
 	    if (caption == undefined)
 	        caption = "";

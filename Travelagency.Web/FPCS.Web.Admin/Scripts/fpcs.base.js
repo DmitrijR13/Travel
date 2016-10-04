@@ -135,14 +135,28 @@ fpcs.renderPartial = function (url, containerID, callbackSuccess) {
     return false;
 };
 
-fpcs.initTitleForDialog = function() {
+//fpcs.initTitleForDialog = function() {
+//    //override dialog's title function to allow for HTML titles
+//    $.widget("ui.dialog", $.extend({}, $.ui.dialog.prototype, {
+//        _title: function(title) {
+//            var $title = this.options.title || '&nbsp;'
+//            if (("title_html" in this.options) && this.options.title_html == true)
+//                title.html($title);
+//            else title.text($title);
+//        }
+//    }));
+//};
+
+
+fpcs.initTitleForDialog = function () {
     //override dialog's title function to allow for HTML titles
     $.widget("ui.dialog", $.extend({}, $.ui.dialog.prototype, {
-        _title: function(title) {
-            var $title = this.options.title || '&nbsp;'
-            if (("title_html" in this.options) && this.options.title_html == true)
-                title.html($title);
-            else title.text($title);
+        _title: function (title) {
+            if (!this.options.title) {
+                title.html("&#160;");
+            } else {
+                title.html(this.options.title);
+            }
         }
     }));
 };
@@ -174,11 +188,18 @@ fpcs.showDialog = function(title, html, width, isTop) {
         resizable: false,
         draggable: true,
         modal: true,
-        title: "<div class='widget-header widget-header-small'><h4 class='smaller'><i class='icon-ok'></i> " + title + "</h4></div>",
+        title: '<div class="widget-header widget-header-small"><h4 class="smaller"><i class="icon-ok"></i> ' + title + '</h4></div>',
+        //title: title,
         title_html: true,
         width: width,
-        position: position
+        position: position,
+        open: function () {
+            var $formTitle = $("p.title", this);
+            $(this).prev().find(".ui-dialog-title").text($formTitle.text());
+            $formTitle.remove();
+        }
     });
+
 };
 
 fpcs.closeDialog = function() {

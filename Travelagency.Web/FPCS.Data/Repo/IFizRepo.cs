@@ -13,5 +13,8 @@ namespace FPCS.Data.Repo
         FisicalPerson Add(String fio, String cellPhone, String phone, String fieldOfActivity, String email, WayOfInform wayOfInform, DateTimeOffset? dateOfBirth);
 
         FisicalPerson Update(Guid PersonId, String fio, String cellPhone, String phone, String fieldOfActivity, String email, WayOfInform wayOfInform, DateTimeOffset? dateOfBirth);
+
+        IQueryable<FisicalPerson> GetEmailById(String ids);
+
     }
 }

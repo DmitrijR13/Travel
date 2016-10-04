@@ -12,6 +12,7 @@ using System.Web.Mvc;
 using FPCS.Data.Entities;
 using FPCS.Data.Exceptions;
 using FPCS.Core.Extensions;
+using FPCS.Core;
 
 namespace FPCS.Web.Admin.Controllers
 {
@@ -100,9 +101,9 @@ namespace FPCS.Web.Admin.Controllers
                     {
                         try
                         {
-                            repo.Remove(new Guid(item));
+                            repo.Remove(Convert.ToInt64(item));
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
                             errorsCount++;
                         }
@@ -174,6 +175,21 @@ namespace FPCS.Web.Admin.Controllers
             model.Init();
             return PartialView(model);
         }
+
+        [HttpPost]
+        public ActionResult SendEmail(String[] ids)
+        {
+            var id = String.Join(",", ids);
+            using (var uow = UnityManager.Resolve<IUnitOfWork>())
+            {
+                var repo = uow.GetRepo<IFizRepo>();
+                var dbEntity = repo.GetEmailById(id);
+                var emails = String.Join(",", dbEntity.Select(x => x.Email.Trim()));
+                EmailSender.Instance.Send(emails, "Test", "Test Test");
+            }
+            return JsonRes(Status.OK);
+        }
+
 
         [HttpGet]
         public PartialViewResult _Edit(Int64 id)

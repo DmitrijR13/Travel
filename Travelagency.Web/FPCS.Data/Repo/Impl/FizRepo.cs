@@ -60,5 +60,13 @@ namespace FPCS.Data.Repo.Impl
 
             return fizPerson;
         }
+
+
+        public IQueryable<FisicalPerson> GetEmailById(String ids)
+        {
+            return GetAll()
+                .Where(x => x.IsDeleted == false && (x.WayOfInform == WayOfInform.Email || x.WayOfInform == WayOfInform.Other) 
+                    && !String.IsNullOrEmpty(x.Email) && ids.Contains(x.PersonId.ToString()));
+        }
     }
 }

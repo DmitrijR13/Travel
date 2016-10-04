@@ -56,7 +56,8 @@
         fpcs.jqGrid.initNavButtons("/Fiz/DeleteAll", fizPerson.showCreateDialog, "Добавить нового клиента");
         
        
-        //fpcs.jqGrid.initNavPrintButton(fpcs.student.initPrint);
+        //fpcs.jqGrid.initNavSendEmailButton(fizPerson.initSendEmail);
+        fpcs.jqGrid.initNavSendEmailButton(fizPerson.initSendEmail, "Отправить email");
 
         //fizPerson.initDetailsDialog();
         fizPerson.initCreateDialogSend();
@@ -84,6 +85,13 @@
     showCreateDialog: function () {
         fpcs.getPartial('/Fiz/_Create/', function (data, textStatus) {
             fpcs.showDialog("Добавить нового клиента", data);
+        });
+    },
+
+    initSendEmail: function () {
+        var selRowIds = jQuery('#gridTable').jqGrid('getGridParam', 'selarrrow');
+        fpcs.executeService("/Fiz/SendEmail", selRowIds, function (data) {
+            
         });
     },
 
