@@ -16,6 +16,9 @@ namespace FPCS.Data
             modelBuilder.Configurations.Add(new DbUserConfig());
             modelBuilder.Configurations.Add(new AdminConfig());
             modelBuilder.Configurations.Add(new FisicalPersonConfig());
+            modelBuilder.Configurations.Add(new EmailInfoConfig());
+            modelBuilder.Configurations.Add(new EmailLetterConfig());
+
         }
     }
 }
