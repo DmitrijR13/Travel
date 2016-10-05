@@ -100,11 +100,17 @@
   <ItemGroup>
     <Compile Include="Cofigs\AdminConfig.cs" />
     <Compile Include="Cofigs\DbUserConfig.cs" />
+    <Compile Include="Cofigs\EmailInfoConfig.cs" />
+    <Compile Include="Cofigs\EmailLetterConfig.cs" />
     <Compile Include="Cofigs\FisicalPersonConfig.cs" />
     <Compile Include="Entities\Admin.cs" />
     <Compile Include="Entities\DbUser.cs" />
+    <Compile Include="Entities\EmailInfo.cs" />
+    <Compile Include="Entities\EmailLetter.cs" />
+    <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\FisicalPerson.cs" />
     <Compile Include="Enums\Role.cs" />
+    <Compile Include="Enums\TypePerson.cs" />
     <Compile Include="Enums\WayOfInform.cs" />
     <Compile Include="Exceptions\ChildEntityRelationException.cs" />
     <Compile Include="Exceptions\InvalidRangeException.cs" />
@@ -123,6 +129,10 @@
     <Compile Include="Migrations\201610041653091_04_10_2016_00.cs" />
     <Compile Include="Migrations\201610041653091_04_10_2016_00.Designer.cs">
       <DependentUpon>201610041653091_04_10_2016_00.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610050851059_05_10_2016_00.cs" />
+    <Compile Include="Migrations\201610050851059_05_10_2016_00.Designer.cs">
+      <DependentUpon>201610050851059_05_10_2016_00.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -153,6 +163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610041653091_04_10_2016_00.resx">
       <DependentUpon>201610041653091_04_10_2016_00.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610050851059_05_10_2016_00.resx">
+      <DependentUpon>201610050851059_05_10_2016_00.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

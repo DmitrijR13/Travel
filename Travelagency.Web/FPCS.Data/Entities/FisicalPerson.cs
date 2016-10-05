@@ -7,7 +7,7 @@ using FPCS.Data.Enums;
 
 namespace FPCS.Data.Entities
 {
-    public class FisicalPerson
+    public class FisicalPerson : BaseEntity
     {
         public Int64 PersonId { get; set; }
 
@@ -24,11 +24,5 @@ namespace FPCS.Data.Entities
         public WayOfInform WayOfInform { get; set; }
 
         public DateTimeOffset? DateOfBirth { get; set; }
-
-        public Boolean IsDeleted { get; set; }
-
-        public DateTimeOffset CreatedDate { get; set; }
-
-        public DateTimeOffset UpdatedDate { get; set; }
     }
 }

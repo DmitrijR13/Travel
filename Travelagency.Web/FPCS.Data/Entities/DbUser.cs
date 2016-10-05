@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace FPCS.Data.Entities
 {
-	public abstract class DbUser
+	public abstract class DbUser :BaseEntity
 	{
 		public Guid DbUserId { get; set; }
 
@@ -25,12 +25,6 @@ namespace FPCS.Data.Entities
 		public String MiddleInitial { get; set; }
 
 		public Boolean IsLocked { get; set; }
-
-		public Boolean IsDeleted { get; set; }
-
-		public DateTimeOffset CreatedDate { get; set; }
-
-		public DateTimeOffset UpdatedDate { get; set; }
 
 		public Role Role { get; set; }
 	}

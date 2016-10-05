@@ -12,4 +12,8 @@ Travelagency.Web/packages/Microsoft.AspNet.Mvc.4.0.40804.0/
 Travelagency.Web/packages/Microsoft.AspNet.Razor.1.0.20105.408/
 Travelagency.Web/packages/Microsoft.AspNet.Razor.2.0.20710.0/
 Travelagency.Web/packages/Microsoft.AspNet.WebPages.3.2.3.deleteme
+<<<<<<< HEAD
 Travelagency.Web/.vs/Travelagency.Web/v14/.suo
+=======
+Travelagency.Web/.vs/config/applicationhost.config
+>>>>>>> a8d63195eee724abb72f8a3b402ea3e80c02f100
