@@ -17,6 +17,7 @@
                 @Html.ValidationSummary(true)
             </div>
             @Html.HiddenFor(x => x.Emails);
+            @Html.HiddenFor(x => x.PersonIds);
             <div class="control-group">
                 @Html.LabelFor(x => x.Theme, new { @class = "control-label" })
                 <div class="controls">

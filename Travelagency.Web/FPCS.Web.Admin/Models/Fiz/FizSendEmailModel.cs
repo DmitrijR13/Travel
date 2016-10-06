@@ -20,5 +20,7 @@ namespace FPCS.Web.Admin.Models.Fiz
         public String Body { get; set; }
 
         public String Emails { get; set; }
+
+        public String PersonIds { get; set; }
     }
 }

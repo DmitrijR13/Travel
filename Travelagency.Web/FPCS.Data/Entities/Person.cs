@@ -7,9 +7,11 @@ using FPCS.Data.Enums;
 
 namespace FPCS.Data.Entities
 {
-    public class FisicalPerson : BaseEntity
+    public class Person : BaseEntity
     {
         public Int64 PersonId { get; set; }
+
+        public TypePerson TypePerson { get; set; }
 
         public String FIO { get; set; }
 
@@ -24,5 +26,7 @@ namespace FPCS.Data.Entities
         public WayOfInform WayOfInform { get; set; }
 
         public DateTimeOffset? DateOfBirth { get; set; }
+
+        public virtual ICollection<EmailInfo> EmailInfos { get; set; }
     }
 }

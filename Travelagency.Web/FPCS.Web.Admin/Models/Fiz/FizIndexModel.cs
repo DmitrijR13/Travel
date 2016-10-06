@@ -29,9 +29,9 @@ namespace FPCS.Web.Admin.Models.Fiz
         {
             using (var uow = UnityManager.Instance.Resolve<IUnitOfWork>())
             {
-                var repoFiz = uow.GetRepo<IFizRepo>();
+                var repoFiz = uow.GetRepo<IPersonRepo>();
 
-                var fizPersons = repoFiz.GetAllFiz()
+                var fizPersons = repoFiz.GetPersonByType(TypePerson.FizPerson)
                     .Select(x => new
                     {
                         PersonId = x.PersonId,
