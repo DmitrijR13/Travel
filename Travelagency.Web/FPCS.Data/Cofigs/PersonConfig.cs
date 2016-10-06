@@ -5,9 +5,9 @@ using FPCS.Data.Entities;
 
 namespace FPCS.Data.Cofigs
 {
-    internal class FisicalPersonConfig : EntityTypeConfiguration<FisicalPerson>
+    internal class PersonConfig : EntityTypeConfiguration<Person>
     {
-        public FisicalPersonConfig()
+        public PersonConfig()
         {
             HasKey(x => x.PersonId);
             Property(x => x.PersonId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
@@ -24,6 +24,7 @@ namespace FPCS.Data.Cofigs
             Property(x => x.UpdatedDate).IsRequired();
 
             Property(x => x.WayOfInform).IsRequired();
+            Property(x => x.TypePerson).IsRequired();
         }
     }
 }

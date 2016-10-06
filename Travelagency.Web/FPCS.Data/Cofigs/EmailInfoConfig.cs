@@ -12,10 +12,11 @@ namespace FPCS.Data.Cofigs
             HasKey(x => x.EmailInfoId);
             Property(x => x.EmailInfoId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
-            Property(x => x.TypePerson).IsRequired();
+          
             Property(x => x.PersonId).IsRequired();
 
             HasRequired(x => x.EmailLetter).WithMany(x => x.EmailInfos).HasForeignKey(x => x.EmailLetterId).WillCascadeOnDelete(false);
+            HasRequired(x => x.Person).WithMany(x => x.EmailInfos).HasForeignKey(x => x.PersonId).WillCascadeOnDelete(false);
             //HasOptional если поле не обязательно и может быть null
             Property(x => x.IsDeleted).IsRequired();
             Property(x => x.CreatedDate).IsRequired();

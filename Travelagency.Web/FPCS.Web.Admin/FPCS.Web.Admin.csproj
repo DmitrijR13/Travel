@@ -247,6 +247,7 @@
     <Compile Include="Code\RenderScriptsExtensions.cs" />
     <Compile Include="Code\VirtualPathHandler.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\FizController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
@@ -256,6 +257,8 @@
     </Compile>
     <Compile Include="Helpers\Access\AccessAction.cs" />
     <Compile Include="Helpers\Access\Models\AccessActionModel.cs" />
+    <Compile Include="Models\Email\EmailIndexModel.cs" />
+    <Compile Include="Models\Email\EmailListOption.cs" />
     <Compile Include="Models\Fiz\FizSendEmailModel.cs" />
     <Compile Include="Models\Fiz\FizEditModel.cs" />
     <Compile Include="Models\Fiz\FizCreateModel.cs" />
@@ -415,6 +418,7 @@
     <Content Include="Scripts\date-time\bootstrap-datepicker.js" />
     <Content Include="Scripts\date-time\maskedinput.js" />
     <Content Include="Scripts\editableAmp.js" />
+    <Content Include="Scripts\email.js" />
     <Content Include="Scripts\fpcs.monthlyContactLog.js" />
     <Content Include="Scripts\fpcs.ilpBank.js" />
     <Content Include="Scripts\fpcs.dashboard.js" />
@@ -479,7 +483,6 @@
     <Content Include="Scripts\chosen.jquery.min.js" />
     <Content Include="Scripts\fpcs.schoolYear.js" />
     <Content Include="Scripts\fpcs.guardian.js" />
-    <Content Include="Scripts\fizPerson2.js" />
     <Content Include="Scripts\date-time\bootstrap-datepicker.min.js" />
     <Content Include="Scripts\date-time\bootstrap-timepicker.min.js" />
     <Content Include="Scripts\date-time\daterangepicker.min.js" />
@@ -574,6 +577,7 @@
     <Content Include="Views\Fiz\_Create.cshtml" />
     <Content Include="Views\Fiz\_Edit.cshtml" />
     <Content Include="Views\Fiz\SendEmail.cshtml" />
+    <Content Include="Views\Email\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

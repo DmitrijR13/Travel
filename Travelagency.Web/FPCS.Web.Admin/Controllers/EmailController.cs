@@ -13,72 +13,63 @@ using FPCS.Data.Entities;
 using FPCS.Data.Exceptions;
 using FPCS.Core.Extensions;
 using FPCS.Core;
+using FPCS.Web.Admin.Models.Email;
 
 namespace FPCS.Web.Admin.Controllers
 {
-    public class FizController : BaseController
+    public class EmailController : BaseController
     {
         public ActionResult Index()
         {
-            FizIndexModel model = new FizIndexModel();
-            model.WayOfInform = String.Join(@";", FPCS.Data.Enums.WayOfInform.Email.ToSelectListUsingDesc().Select(x => String.Format(@"{0}: {1}", x.Value, x.Text)));
+            EmailIndexModel model = new EmailIndexModel();
+           
             //model.Init();
             return View(model);
         }
 
-        public JsonResult _Index(GridOptions options, FizListOptions fizListOptions)
+        public JsonResult _Index(GridOptions options, EmailListOptions emailListOptions)
         {
             using (var uow = UnityManager.Resolve<IUnitOfWork>())
-            {
-                var fiz = GetData(uow, options, fizListOptions);
-                Int32 totalCount = fiz.Count();
+            { 
+                var email = GetData(uow, options, emailListOptions);
+                Int32 totalCount = email.Count();
 
-                var engine = new GridDynamicEngine(options, fizListOptions);
-                var result = engine.CreateGridResult2(engine.ApplyPaging(fiz.AsQueryable()), totalCount, x => new FizIndexModel
+                var engine = new GridDynamicEngine(options, emailListOptions);
+                var result = engine.CreateGridResult2(engine.ApplyPaging(email.AsQueryable()), totalCount, x => new EmailIndexModel
                 {
-                    DateOfBirth = x.DateOfBirth,
-                    WayOfInform = x.WayOfInform,
-                    Phones = x.Phones,
-                    PersonId = x.PersonId,
-                    Email = x.Email,
-                    FieldOfActivity = x.FieldOfActivity,
-                    FIO = x.FIO
-                });
+                    Theme = x.Theme,
+                    CreateDate = x.CreateDate,
+                    Body = x.Body,
+                    EmailLetterId = x.EmailLetterId
+                 });
 
                 return Json(result);
             }
         }
 
 
-        private List<FizIndexModel> GetData(IUnitOfWork uow, GridOptions options, FizListOptions fizListOptions)
+        private List<EmailIndexModel> GetData(IUnitOfWork uow, GridOptions options, EmailListOptions emailListOptions)
         {
-            var repo = uow.GetRepo<IPersonRepo>();
-            var fltWayOfInform = fizListOptions.WayOfInform;
+            var repo = uow.GetRepo<IEmailLetterRepo>();
+           // var fltWayOfInform = fizListOptions.WayOfInform;
 
-            var dbList = repo.GetPersonByType(TypePerson.FizPerson)
-                .Where(x => ((fltWayOfInform.HasValue && x.WayOfInform == fltWayOfInform.Value) || !fltWayOfInform.HasValue ))
+            var dbList = repo.GetAll()
                 .Select(x => new
                 {
-                    PersonId = x.PersonId,
-                    FIO = x.FIO,
-                    Phones = x.Phone + (x.CellPhone != "" ? "(" + x.CellPhone + ")" : ""),
-                    FieldOfActivity = x.FieldOfActivity,
-                    Email = x.Email,
-                    DateOfBirth = x.DateOfBirth,
-                    WayOfInform = x.WayOfInform
+                    EmailLetterId = x.EmailLetterId,
+                    Theme = x.Theme,
+                    Body = x.Body,
+                    CreateDate = x.CreatedDate
                 })
-                                .ToList();
+                .ToList();
 
-            var engine = new GridDynamicEngine(options, fizListOptions);
-            var result = engine.ApplySort(engine.ApplyFilter(dbList.AsQueryable())).Select(x => new FizIndexModel
+            var engine = new GridDynamicEngine(options, emailListOptions);
+            var result = engine.ApplySort(engine.ApplyFilter(dbList.AsQueryable())).Select(x => new EmailIndexModel
             {
-                PersonId = x.PersonId,
-                FIO = x.FIO,
-                Phones = x.Phones,
-                FieldOfActivity = x.FieldOfActivity,
-                Email = x.Email,
-                DateOfBirth = x.DateOfBirth.HasValue ? x.DateOfBirth.Value.ToString("dd/MM/yyyy") : String.Empty,
-                WayOfInform = x.WayOfInform.GetDescription()
+                EmailLetterId = x.EmailLetterId,
+                Theme = x.Theme,
+                Body = x.Body,
+                CreateDate = x.CreateDate.ToString("dd.MM.yyyy")
             })
             .ToList();
 
@@ -96,9 +87,23 @@ namespace FPCS.Web.Admin.Controllers
                 using (var uow = UnityManager.Resolve<IUnitOfWork>())
                 {
                     Int32 errorsCount = 0;
-                    var repo = uow.GetRepo<IPersonRepo>();
+                    var repo = uow.GetRepo<IEmailLetterRepo>();
                     foreach (var item in ids)
                     {
+                        var emailInfo = uow.GetRepo<IEmailInfoRepo>();
+                        var entities = emailInfo.GetEmailByEmailLetterId(Convert.ToInt64(item));
+                        foreach (var entity in entities)
+                        {
+                            try
+                            {
+                                emailInfo.Remove(entity.EmailInfoId);
+                            }
+                            catch (Exception ex)
+                            {
+                                errorsCount++;
+                            }
+                        }
+                       
                         try
                         {
                             repo.Remove(Convert.ToInt64(item));
@@ -191,8 +196,7 @@ namespace FPCS.Web.Admin.Controllers
             {
                 Body = "",
                 Theme = "",
-                Emails = emails,
-                PersonIds = id
+                Emails = emails
             };
             return PartialView(model);
         }
@@ -200,21 +204,6 @@ namespace FPCS.Web.Admin.Controllers
         [HttpPost]
         public ActionResult SendEmail(FizSendEmailModel model)
         {
-            //кладем письмо в таблицу EmailLetter
-            using (var uow = UnityManager.Resolve<IUnitOfWork>())
-            {
-                var repoEmail = uow.GetRepo<IEmailLetterRepo>();
-                var entity = repoEmail.Add(model.Theme, model.Body);
-
-                var repoEmailInfo = uow.GetRepo<IEmailInfoRepo>();
-
-                String[] personIds = model.PersonIds.Split(',');
-                foreach(var id in personIds)
-                {
-                    repoEmailInfo.Add(Convert.ToInt64(id), entity.EmailLetterId);
-                }
-                uow.Commit();
-            }
             if (ModelState.IsValid)
             {
                 EmailSender.Instance.Send(model.Emails, model.Theme, model.Body);

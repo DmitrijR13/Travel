@@ -1,0 +1,35 @@
+﻿@model FPCS.Web.Admin.Models.Email.EmailIndexModel
+@using FPCS.Data.Enums
+@{
+    ViewBag.Title = "Архив отправленных сообщений";
+    ViewBag.Header = "Архив отправленных сообщений";
+}
+
+
+
+<div class="row-fluid">
+    <div class="span12 gridWrapper">
+        <table id="gridTable"></table>
+        <div id="gridPager"></div>
+    </div>
+</div>
+
+@section Styles {
+    @Styles.Render("~/Content/css/jqGrid")
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqGrid")
+
+    <script type="text/javascript">
+        jQuery(function ($) {
+            email.initIndexPage();
+
+            window.addEventListener("resize", function () {
+                $('.chzn-container').innerWidth($('#selecciona_paciente_estadisticas_form').innerWidth());
+                $('.chzn-search input').innerWidth($('#selecciona_paciente_estadisticas_form').innerWidth() - 12);
+                $('.chzn-drop').innerWidth($('#selecciona_paciente_estadisticas_form').innerWidth() - 2);
+            }, false);
+        });
+    </script>
+}

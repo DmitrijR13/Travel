@@ -11,8 +11,6 @@ namespace FPCS.Data.Entities
     {
         public Int64 EmailInfoId { get; set; }
 
-        public TypePerson TypePerson { get; set; }
-                
         public Int64 PersonId { get; set; }
 
         public Int64 EmailLetterId { get; set; }
@@ -20,6 +18,7 @@ namespace FPCS.Data.Entities
         //public Int64? EmailLetterId { get; set; } если поле не обязательно и может быть null
 
         public virtual EmailLetter EmailLetter { get; set; }
-        
+        public virtual Person Person { get; set; }
+
     }
 }
