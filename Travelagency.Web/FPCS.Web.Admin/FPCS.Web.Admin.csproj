@@ -428,6 +428,7 @@
     <Content Include="Scripts\fpcs.signedPacket.js" />
     <Content Include="Scripts\fizPerson.js" />
     <Content Include="Scripts\fpcs.studentPacket2.js" />
+    <None Include="Properties\PublishProfiles\pubProfile.pubxml" />
     <None Include="Scripts\jquery-2.0.3-vsdoc.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
