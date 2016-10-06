@@ -200,25 +200,33 @@ namespace FPCS.Web.Admin.Controllers
         [HttpPost]
         public ActionResult SendEmail(FizSendEmailModel model)
         {
-            //кладем письмо в таблицу EmailLetter
-            using (var uow = UnityManager.Resolve<IUnitOfWork>())
-            {
-                var repoEmail = uow.GetRepo<IEmailLetterRepo>();
-                var entity = repoEmail.Add(model.Theme, model.Body);
-
-                var repoEmailInfo = uow.GetRepo<IEmailInfoRepo>();
-
-                String[] personIds = model.PersonIds.Split(',');
-                foreach(var id in personIds)
-                {
-                    repoEmailInfo.Add(Convert.ToInt64(id), entity.EmailLetterId);
-                }
-                uow.Commit();
-            }
             if (ModelState.IsValid)
             {
-                EmailSender.Instance.Send(model.Emails, model.Theme, model.Body);
-                return JsonRes(Status.OK, "OK");
+                try
+                {
+                    EmailSender.Instance.Send(model.Emails, model.Theme, model.Body);
+                    //кладем письмо в таблицу EmailLetter
+                    using (var uow = UnityManager.Resolve<IUnitOfWork>())
+                    {
+                        var repoEmail = uow.GetRepo<IEmailLetterRepo>();
+                        var entity = repoEmail.Add(model.Theme, model.Body);
+
+                        var repoEmailInfo = uow.GetRepo<IEmailInfoRepo>();
+
+                        String[] personIds = model.PersonIds.Split(',');
+                        foreach (var id in personIds)
+                        {
+                            repoEmailInfo.Add(Convert.ToInt64(id), entity.EmailLetterId);
+                        }
+                        uow.Commit();
+                    }
+                    return JsonRes(Status.OK, "OK");
+
+                }
+                catch (Exception ex)
+                {
+                    return JsonRes(Status.Error, ex.Message);
+                }
             }
             return PartialView(model);
         }

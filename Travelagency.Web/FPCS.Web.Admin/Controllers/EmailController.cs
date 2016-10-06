@@ -14,6 +14,7 @@ using FPCS.Data.Exceptions;
 using FPCS.Core.Extensions;
 using FPCS.Core;
 using FPCS.Web.Admin.Models.Email;
+using FPCS.Web.Admin.Models.Person;
 
 namespace FPCS.Web.Admin.Controllers
 {
@@ -145,138 +146,44 @@ namespace FPCS.Web.Admin.Controllers
             }
         }
 
-        [HttpGet]
-        public PartialViewResult _Create()
-        {
-            var model = new FizCreateModel();
-            model.Init();
-            return PartialView(model);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult _Create(FizCreateModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    using (var uow = UnityManager.Resolve<IUnitOfWork>())
-                    {
-                        var repo = uow.GetRepo<IPersonRepo>();
-
-                        var dbEntity = repo.Add(model.FIO, model.CellPhone, model.Phone, model.FieldOfActivity, model.Email, model.WayOfInform, model.DateOfBirth, TypePerson.FizPerson);
-
-                        uow.Commit();
-                      
-                        return JsonRes(dbEntity.PersonId.ToString());
-                    }
-                }
-                catch (Exception ex)
-                {
-                    ModelState.AddModelError("", ex.Message);
-                }
-            }
-            model.Init();
-            return PartialView(model);
-        }
-
-        [HttpGet]
-        public ActionResult SendEmail(String[] ids)
-        {
-            var id = String.Join(",", ids);
-            String emails = String.Empty;
-            using (var uow = UnityManager.Resolve<IUnitOfWork>())
-            {
-                var repo = uow.GetRepo<IPersonRepo>();
-                var dbEntity = repo.GetEmailById(id);
-                emails = String.Join(",", dbEntity.Select(x => x.Email.Trim()));
-            }
-            var model = new FizSendEmailModel
-            {
-                Body = "",
-                Theme = "",
-                Emails = emails
-            };
-            return PartialView(model);
-        }
-
-        [HttpPost]
-        public ActionResult SendEmail(FizSendEmailModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                EmailSender.Instance.Send(model.Emails, model.Theme, model.Body);
-                return JsonRes(Status.OK, "OK");
-            }
-            return PartialView(model);
-        }
-
-
-        [HttpGet]
-        public PartialViewResult _Edit(Int64 id)
+        public ActionResult EmailDetail(Int64 id)
         {
             using (var uow = UnityManager.Resolve<IUnitOfWork>())
             {
-                var dbEntity = uow.GetRepo<IPersonRepo>().Get(id);
+                var dbEntity = uow.GetRepo<IEmailLetterRepo>().Get(id);
                 if (dbEntity == null) return ErrorPartial("Клиент {0} не найден", id);
 
-
-                var model = new FizEditModel
+                var model = new EmailIndexModel
                 {
-                    PersonId = dbEntity.PersonId,
-                    CellPhone = dbEntity.CellPhone,
-                    DateOfBirth = dbEntity.DateOfBirth,
-                    Email = dbEntity.Email,
-                    FieldOfActivity = dbEntity.FieldOfActivity,
-                    FIO = dbEntity.FIO,
-                    Phone = dbEntity.Phone,
-                    WayOfInform = dbEntity.WayOfInform
+                    Theme = dbEntity.Theme,
+                    Body = dbEntity.Body,
+                    EmailLetterId = dbEntity.EmailLetterId
                 };
 
-                model.Init();
-                return PartialView(model);
+                return View(model);
             }
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult _Edit(FizEditModel model)
+        public JsonResult PersonDetail(GridOptions options, EmailInfoDetailListOption fizListOptions, Int64 emailLetterId)
         {
-            if (ModelState.IsValid)
+            using (var uow = UnityManager.Resolve<IUnitOfWork>())
             {
-                try
+                var repo = uow.GetRepo<IEmailInfoRepo>();
+                var emailLetters = repo.GetEmailByEmailLetterId(emailLetterId).ToList();
+                Int32 totalCount = emailLetters.Count();
+
+                var engine = new GridDynamicEngine(options, fizListOptions);
+                var result = engine.CreateGridResult2(engine.ApplyPaging(emailLetters.AsQueryable()), totalCount, x => new PersonEmailDetailModel
                 {
-                    using (var uow = UnityManager.Resolve<IUnitOfWork>())
-                    {
-                        var repo = uow.GetRepo<IPersonRepo>();
+                    PersonId = x.Person.PersonId,
+                    Email = x.Person.Email,
+                    FIO = x.Person.FIO,
+                    Phones = x.Person.Phone + (x.Person.CellPhone != "" ? "(" + x.Person.CellPhone + ")" : "")
+                });
 
-                        Person dbEntity = repo.Get(model.PersonId);
-                        if (dbEntity == null) throw new NotFoundEntityException("Клиент не найден");
-
-                        dbEntity.CellPhone = model.CellPhone.Trim();
-                        dbEntity.DateOfBirth = model.DateOfBirth.HasValue ? model.DateOfBirth.Value : new DateTimeOffset(1900,1,1,0,0,0, new TimeSpan());
-                        dbEntity.Email = model.Email.Trim();
-                        dbEntity.FieldOfActivity = model.FieldOfActivity.Trim();
-                        dbEntity.FIO = model.FIO;
-                        dbEntity.Phone = model.Phone;
-                        dbEntity.UpdatedDate = DateTime.Now;
-                        dbEntity.WayOfInform = model.WayOfInform;
-
-                        repo.Update(dbEntity);
-
-                        uow.Commit();
-
-                        return JsonRes(new { PersonId = dbEntity.PersonId, FullName = dbEntity.FIO});
-                    }
-                }
-                catch (Exception ex)
-                {
-                    ModelState.AddModelError("", ex.Message);
-                }
+                return Json(result);
             }
-
-            return PartialView(model);
         }
     }
 }

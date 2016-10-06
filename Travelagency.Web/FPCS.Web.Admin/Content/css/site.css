@@ -579,3 +579,12 @@ td.packet-for-cost {
     width: auto !important;
     background: url('../img/logo1.png') center center repeat !important;
 }
+
+.editor-field textarea{
+    height : 200px;
+    width : 100%
+}
+
+.editor-field-textbox {
+    width : 100%
+}

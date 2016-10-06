@@ -6,6 +6,7 @@ using FPCS.Data;
 using FPCS.Data.Enums;
 using FPCS.Data.Repo;
 using FPCS.Core.Unity;
+using System.ComponentModel.DataAnnotations;
 
 namespace FPCS.Web.Admin.Models.Email
 {
@@ -13,8 +14,10 @@ namespace FPCS.Web.Admin.Models.Email
     {
         public Int64 EmailLetterId { get; set; }
 
+        [Display(Name = "Тема")]
         public String Theme { get; set; }
 
+        [Display(Name = "Текст")]
         public String Body { get; set; }
 
         public String CreateDate { get; set; }

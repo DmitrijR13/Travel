@@ -33,13 +33,21 @@
                 },
                 { name: 'act', index: 'act', width: 90, fixed: true, sortable: false, resize: false, search: false }
             ],
+            rowButtons: [
+                {
+                    title: "Детали письма", rowClass: "gridRowEmailInfo", rowIcon: "icon-info green"
+                }//,
+                //!fpcs.getIsTeacher() ?
+                    //{ title: "Transfer Manager", rowClass: "gridRowStudentTransfer", rowIcon: "icon-dollar green" } :
+                    //null
+            ]
         });
 
         fpcs.jqGrid.initGridResize();
         fpcs.jqGrid.initFilterToolbar("Email");
 
         fpcs.jqGrid.initNavButtons("/Email/DeleteAll", null, "");
-        
+        email.initEmailInfoButton();
        
         //fpcs.jqGrid.initNavSendEmailButton(fizPerson.initSendEmail);
         //fpcs.jqGrid.initNavSendEmailButton(fizPerson.showSendEmailDialog, "Отправить email");
@@ -52,6 +60,14 @@
 
         $(window).unload(function () {
             fpcs.jqGrid.saveLocalStorage("Email");
+        });
+    },
+
+    initEmailInfoButton: function () {
+        $(document).off("click", ".gridRowEmailInfo");
+        $(document).on("click", ".gridRowEmailInfo", function (e) {
+            var id = $(this).attr("rowid");
+            location.href = "/Email/EmailDetail/" + id;
         });
     },
 

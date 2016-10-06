@@ -157,7 +157,6 @@
         $(document).on("click", ".emailSend", function (e) {
             e.preventDefault();
             fpcs.sendForm("sendEmailForm", function (data, textStatus) {
-                debugger;
                 if (typeof data == "object" && data.ErrorCode == 200) {
                     fizPerson.reloadGrid();
                     fpcs.closeDialog();
