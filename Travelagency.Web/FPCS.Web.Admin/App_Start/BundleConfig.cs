@@ -86,6 +86,8 @@ namespace FPCS.Web.Admin
                         "~/Scripts/fizPerson.js",
                         "~/Scripts/email.js",
                         "~/Scripts/emailDetail.js",
+                        "~/Scripts/person.js",
+                        "~/Scripts/personEmail.js",
                         "~/Scripts/fpcs.teacher.js",
                         "~/Scripts/fpcs.user.js",
                         "~/Scripts/fpcs.schoolYear.js",

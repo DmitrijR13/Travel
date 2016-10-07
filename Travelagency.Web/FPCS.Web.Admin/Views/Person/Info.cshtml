@@ -1,0 +1,36 @@
+﻿@model FPCS.Web.Admin.Models.Person.PersonInfoModel
+@using FPCS.Data.Enums
+@{
+    ViewBag.Title = "Письма клиента";
+    ViewBag.Header = "Письма клиента";
+}
+
+@Html.Hidden("PersonId", Model.PersonId, new { id = "personId" })
+
+<div class="row-fluid">
+    <div class="span12 gridWrapper">
+        <table id="gridTable"></table>
+        <div id="gridPager"></div>
+    </div>
+</div>
+
+@section Styles {
+    @Styles.Render("~/Content/css/jqGrid")
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqGrid")
+
+    <script type="text/javascript">
+        jQuery(function ($) {
+            var personId = @Model.PersonId;
+            person.initIndexPage(personId);
+
+            window.addEventListener("resize", function () {
+                $('.chzn-container').innerWidth($('#selecciona_paciente_estadisticas_form').innerWidth());
+                $('.chzn-search input').innerWidth($('#selecciona_paciente_estadisticas_form').innerWidth() - 12);
+                $('.chzn-drop').innerWidth($('#selecciona_paciente_estadisticas_form').innerWidth() - 2);
+            }, false);
+        });
+    </script>
+}

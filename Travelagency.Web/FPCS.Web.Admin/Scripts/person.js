@@ -1,48 +1,45 @@
-﻿emailDetail = {
+﻿person = {
 
-    initIndexPage: function (emailLetterId) {
+    initIndexPage: function (personId) {
         fpcs.jqGrid.initGrid({
             gridWrapper: ".gridWrapper",
             gridSelector: "#gridTable",
             pagerSelector: "#gridPager",
-            localStorageId: "EmailDetail",
-            url: "/Email/PersonDetail?emailLetterId=" + emailLetterId,
+            localStorageId: "PersonInfo",
+            url: "/Person/Detail?personId=" + personId,
             rowNum: 100000,
             showEditButton: false,
             showDeleteButton: false,
-            sortname: 'FIO',
+            sortname: 'Theme',
             jsonReader: {
                 repeatitems: false,
                 id: "EmailLetterId"
             },
-            colNames: ['PersonId', 'ФИО', 'Телефоны', 'Email', 'Действия'],
+            colNames: ['EmailLetterId', 'Тема', 'Текст', 'Дата', 'Действия'],
             colModel: [
-				{ name: 'PersonId', index: 'PersonId', key: true, hidden: true },
+				{ name: 'EmailLetterId', index: 'EmailLetterId', key: true, hidden: true },
 				{
-				    name: 'FIO', index: 'FIO', width: 65,
+				    name: 'Theme', index: 'Theme', width: 65,
 				    sortable: true
 				},
                 {
-                    name: 'Phones', index: 'Phones', width: 65,
+                    name: 'Body', index: 'Body', width: 65,
                     sortable: false
                 },
-				{
-				    name: 'Email', index: 'Email', width: 90
-				},
+                {
+                    name: 'CreateDate', index: 'CreateDate', width: 70,
+                    sortable: false,
+                    resizeble: false 
+                },
                 { name: 'act', index: 'act', width: 90, fixed: true, sortable: false, resize: false, search: false }
             ],
-            rowButtons: [
-                {
-                    title: "Все письма", rowClass: "gridRowPersonEmail", rowIcon: "icon-info green"
-                }
-            ]
         });
 
         fpcs.jqGrid.initGridResize();
-        personEmail.initPersonEmailButton();
+        fpcs.jqGrid.initFilterToolbar("PersonInfo");
 
         $(window).unload(function () {
-            fpcs.jqGrid.saveLocalStorage("EmailDetail");
+            fpcs.jqGrid.saveLocalStorage("FizPerson");
         });
     },
 

@@ -48,13 +48,18 @@
                 },
                 { name: 'act', index: 'act', width: 90, fixed: true, sortable: false, resize: false, search: false }
             ],
+            rowButtons: [
+                {
+                    title: "Все письма", rowClass: "gridRowPersonEmail", rowIcon: "icon-info green"
+                }
+            ]
         });
 
         fpcs.jqGrid.initGridResize();
         fpcs.jqGrid.initFilterToolbar("FizPerson");
 
         fpcs.jqGrid.initNavButtons("/Fiz/DeleteAll", fizPerson.showCreateDialog, "Добавить нового клиента");
-        
+        personEmail.initPersonEmailButton();
        
         //fpcs.jqGrid.initNavSendEmailButton(fizPerson.initSendEmail);
         fpcs.jqGrid.initNavSendEmailButton(fizPerson.showSendEmailDialog, "Отправить email");
