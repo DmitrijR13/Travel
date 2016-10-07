@@ -19,15 +19,14 @@
             colModel: [
 				{ name: 'PersonId', index: 'PersonId', key: true, hidden: true },
 				{
-				    name: 'FIO', index: 'FIO', width: 65,
-				    sortable: true
+                    name: 'FIO', index: 'FIO', width: 65, sortable: true
 				},
                 {
                     name: 'Phones', index: 'Phones', width: 65,
                     sortable: false
                 },
 				{
-				    name: 'Email', index: 'Email', width: 90
+                    name: 'Email', index: 'Email', width: 90
 				},
                 { name: 'act', index: 'act', width: 90, fixed: true, sortable: false, resize: false, search: false }
             ],

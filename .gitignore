@@ -18,3 +18,4 @@ Travelagency.Web/.vs/Travelagency.Web/v14/.suo
 Travelagency.Web/.vs/config/applicationhost.config
 >>>>>>> a8d63195eee724abb72f8a3b402ea3e80c02f100
 .gitignore
+Travelagency.Web/debug.log
