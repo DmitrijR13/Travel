@@ -248,6 +248,7 @@
     <Compile Include="Code\VirtualPathHandler.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EmailController.cs" />
+    <Compile Include="Controllers\WorkerController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\FizController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -284,6 +285,10 @@
     <Compile Include="Models\User\UserIndexModel.cs" />
     <Compile Include="Models\User\UserMiniModel.cs" />
     <Compile Include="Models\User\UsersListOptions.cs" />
+    <Compile Include="Models\Worker\WorkerCreateModel.cs" />
+    <Compile Include="Models\Worker\WorkerEditModel.cs" />
+    <Compile Include="Models\Worker\WorkerIndexModel.cs" />
+    <Compile Include="Models\Worker\WorkerListOption.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitySetup.cs" />
   </ItemGroup>
@@ -424,6 +429,7 @@
     <Content Include="Scripts\editableAmp.js" />
     <Content Include="Scripts\emailDetail.js" />
     <Content Include="Scripts\email.js" />
+    <Content Include="Scripts\worker.js" />
     <Content Include="Scripts\person.js" />
     <Content Include="Scripts\personEmail.js" />
     <Content Include="Scripts\fpcs.monthlyContactLog.js" />
@@ -588,6 +594,9 @@
     <Content Include="Views\Email\Index.cshtml" />
     <Content Include="Views\Email\EmailDetail.cshtml" />
     <Content Include="Views\Person\Info.cshtml" />
+    <Content Include="Views\Worker\_Create.cshtml" />
+    <Content Include="Views\Worker\_Edit.cshtml" />
+    <Content Include="Views\Worker\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
