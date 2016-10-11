@@ -12,7 +12,7 @@ namespace FPCS.Data.Repo
 
         Person Add(String fio, String cellPhone, String phone, String fieldOfActivity, String email, WayOfInform wayOfInform, DateTimeOffset? dateOfBirth, TypePerson typePerson);
 
-        Person Update(Guid PersonId, String fio, String cellPhone, String phone, String fieldOfActivity, String email, WayOfInform wayOfInform, DateTimeOffset? dateOfBirth);
+        Person Update(Guid personId, String fio, String cellPhone, String phone, String fieldOfActivity, String email, WayOfInform wayOfInform, DateTimeOffset? dateOfBirth);
 
         IQueryable<Person> GetEmailById(String ids);
 
