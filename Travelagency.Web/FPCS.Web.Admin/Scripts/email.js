@@ -48,6 +48,7 @@
 
         fpcs.jqGrid.initNavButtons("/Email/DeleteAll", null, "");
         email.initEmailInfoButton();
+        email.initDeleteOneEntity();
        
         //fpcs.jqGrid.initNavSendEmailButton(fizPerson.initSendEmail);
         //fpcs.jqGrid.initNavSendEmailButton(fizPerson.showSendEmailDialog, "Отправить email");
@@ -68,6 +69,17 @@
         $(document).on("click", ".gridRowEmailInfo", function (e) {
             var id = $(this).attr("rowid");
             location.href = "/Email/EmailDetail/" + id;
+        });
+    },
+
+    initDeleteOneEntity: function () {
+        $(document).off("click", ".gridRowDelete");
+        $(document).on("click", ".gridRowDelete", function (e) {
+            var id = $(this).attr("rowid");
+            var url = "/Email/Delete/" + id;
+            fpcs.executeServiceWithConfirm(url, null, function () {
+                email.reloadGrid();
+            });
         });
     },
 

@@ -248,6 +248,7 @@
     <Compile Include="Code\VirtualPathHandler.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EmailController.cs" />
+    <Compile Include="Controllers\DictionaryController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\FizController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -345,6 +346,7 @@
     <Content Include="Content\img\logo1.png" />
     <Content Include="Content\img\tick.png" />
     <Content Include="Content\img\title.gif" />
+    <Content Include="Content\img\Wlm.png" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -588,6 +590,7 @@
     <Content Include="Views\Email\Index.cshtml" />
     <Content Include="Views\Email\EmailDetail.cshtml" />
     <Content Include="Views\Person\Info.cshtml" />
+    <Content Include="Views\Dictionary\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

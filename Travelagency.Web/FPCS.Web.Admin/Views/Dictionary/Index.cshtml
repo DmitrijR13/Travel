@@ -1,0 +1,40 @@
+﻿
+@using FPCS.Data.Enums
+@{
+    ViewBag.Title = "Справочники";
+    ViewBag.Header = "Справочники";
+}
+
+<table>
+    <tr>
+        <td>
+            <div class="dictionary-image-button" style="text-align: center;">
+                <span class="dictionary-image-button">
+                    @using (Html.BeginForm("Index", "Worker"))
+                    {
+                        <button name="button" value="ActionOne" class="button" style="width: 100px; height: 100px;" title="Справочник сотрудников">
+                            <img src="../../../Content/img/Wlm.png" />
+                        </button>
+                    }
+                </span>
+            </div>
+            <div class="text dictionary-image-button-tittle" style="text-align: center; width: 100px; height: 50px;">Справочник сотрудников</div>
+        </td>
+    </tr>
+</table>
+
+
+
+
+
+
+
+
+
+@section Styles {
+    @Styles.Render("~/Content/css/jqGrid")
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqGrid")
+}

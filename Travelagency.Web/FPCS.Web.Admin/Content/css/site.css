@@ -588,3 +588,13 @@ td.packet-for-cost {
 .editor-field-textbox {
     width : 100%
 }
+
+.dictionary-image-button {
+    width: 100px;
+    height: 100px
+}
+
+.dictionary-image-button-tittle {
+    width: 100px !important;
+    height: 50px !important
+}
