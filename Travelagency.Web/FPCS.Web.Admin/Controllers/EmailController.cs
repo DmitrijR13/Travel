@@ -133,7 +133,7 @@ namespace FPCS.Web.Admin.Controllers
             {
                 using (var uow = UnityManager.Resolve<IUnitOfWork>())
                 {
-                    var repo = uow.GetRepo<IPersonRepo>();
+                    var repo = uow.GetRepo<IEmailLetterRepo>();
                     repo.Remove(id);
 
                     uow.Commit();
