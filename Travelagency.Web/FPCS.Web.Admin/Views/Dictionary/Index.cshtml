@@ -20,6 +20,45 @@
             </div>
             <div class="text dictionary-image-button-tittle" style="text-align: center; width: 100px; height: 50px;">Справочник сотрудников</div>
         </td>
+        <td>
+            <div class="dictionary-image-button" style="text-align: center;">
+                <span class="dictionary-image-button">
+                    @using (Html.BeginForm("Index", "PrCpmpany"))
+                    {
+                        <button name="button" value="ActionOne" class="button" style="width: 100px; height: 100px;" title="Рекламные компании">
+                            <img src="../../../Content/img/Info1.png" />
+                        </button>
+                    }
+                </span>
+            </div>
+            <div class="text dictionary-image-button-tittle" style="text-align: center; width: 100px; height: 50px;">Рекламные компании</div>
+        </td>
+        <td>
+            <div class="dictionary-image-button" style="text-align: center;">
+                <span class="dictionary-image-button">
+                    @using (Html.BeginForm("Index", "Excursion"))
+                    {
+                        <button name="button" value="ActionOne" class="button" style="width: 100px; height: 100px;" title="Экскурсии">
+                            <img src="../../../Content/img/Web.png" />
+                        </button>
+                    }
+                </span>
+            </div>
+            <div class="text dictionary-image-button-tittle" style="text-align: center; width: 100px; height: 50px;">Экскурсии</div>
+        </td>
+        <td>
+            <div class="dictionary-image-button" style="text-align: center;">
+                <span class="dictionary-image-button">
+                    @using (Html.BeginForm("Index", "Excursion"))
+                    {
+                        <button name="button" value="ActionOne" class="button" style="width: 100px; height: 100px;" title="Виды расходов">
+                            <img src="../../../Content/img/Money.png" />
+                        </button>
+                    }
+                </span>
+            </div>
+            <div class="text dictionary-image-button-tittle" style="text-align: center; width: 100px; height: 50px;">Виды расходов</div>
+        </td>
     </tr>
 </table>
 

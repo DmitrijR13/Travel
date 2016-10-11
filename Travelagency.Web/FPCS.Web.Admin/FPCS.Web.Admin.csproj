@@ -345,12 +345,15 @@
     <Content Include="Content\img\glyphicons-halflings-white.png" />
     <Content Include="Content\img\glyphicons-halflings.png" />
     <Content Include="Content\img\help.gif" />
+    <Content Include="Content\img\Info1.png" />
     <Content Include="Content\img\important.gif" />
     <Content Include="Content\img\info.gif" />
     <Content Include="Content\img\loading.gif" />
     <Content Include="Content\img\logo1.png" />
+    <Content Include="Content\img\Money.png" />
     <Content Include="Content\img\tick.png" />
     <Content Include="Content\img\title.gif" />
+    <Content Include="Content\img\Web.png" />
     <Content Include="Content\img\Wlm.png" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
