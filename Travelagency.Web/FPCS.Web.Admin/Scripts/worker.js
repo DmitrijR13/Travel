@@ -48,15 +48,15 @@
         fpcs.jqGrid.initFilterToolbar("Worker");
 
         fpcs.jqGrid.initNavButtons("/Worker/DeleteAll", worker.showCreateDialog, "Добавить нового сотрудника");
-        personEmail.initPersonEmailButton();
+    //    personEmail.initPersonEmailButton();
        
         //fpcs.jqGrid.initNavSendEmailButton(fizPerson.initSendEmail);
        // fpcs.jqGrid.initNavSendEmailButton(fizPerson.showSendEmailDialog, "Отправить email");
 
         //fizPerson.initDetailsDialog();
-        fizPerson.initCreateDialogSend();
-        fizPerson.initEditDialog();
-        fizPerson.initDeleteOneEntity();
+        worker.initCreateDialogSend();
+        worker.initEditDialog();
+        worker.initDeleteOneEntity();
        // fizPerson.sendEmail();
 
         $(window).unload(function () {

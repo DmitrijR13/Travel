@@ -18,6 +18,7 @@ namespace FPCS.Data
             modelBuilder.Configurations.Add(new PersonConfig());
             modelBuilder.Configurations.Add(new EmailInfoConfig());
             modelBuilder.Configurations.Add(new EmailLetterConfig());
+            modelBuilder.Configurations.Add(new WorkerConfig());
 
         }
     }

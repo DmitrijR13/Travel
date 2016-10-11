@@ -26,6 +26,7 @@ namespace FPCS.Web.Admin.Models.Worker
         [Display(Name = "Сотовый телефой")]
         public String CellPhone { get; set; }
 
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public String Email { get; set; }

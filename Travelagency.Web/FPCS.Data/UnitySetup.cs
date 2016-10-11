@@ -19,6 +19,7 @@ namespace FPCS.Data
             container.RegisterType<IPersonRepo, PersonRepo>();
             container.RegisterType<IEmailInfoRepo, EmailInfoRepo>();
             container.RegisterType<IEmailLetterRepo, EmailLetterRepo>();
+            container.RegisterType<IWorkerRepo, WorkerRepo>();
 
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<StudentManagementContext, Configuration>());
 

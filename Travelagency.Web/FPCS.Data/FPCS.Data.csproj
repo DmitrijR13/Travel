@@ -140,6 +140,10 @@
     <Compile Include="Migrations\201610051105057_05_10_2016_01.Designer.cs">
       <DependentUpon>201610051105057_05_10_2016_01.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610111009416_11_10_2016_00.cs" />
+    <Compile Include="Migrations\201610111009416_11_10_2016_00.Designer.cs">
+      <DependentUpon>201610111009416_11_10_2016_00.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repo\IEmailLetterRepo.cs" />
@@ -181,6 +185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610051105057_05_10_2016_01.resx">
       <DependentUpon>201610051105057_05_10_2016_01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610111009416_11_10_2016_00.resx">
+      <DependentUpon>201610111009416_11_10_2016_00.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
