@@ -1,7 +1,10 @@
-﻿@{
+﻿@model FPCS.Web.Admin.Models.PromotionAction.PromotionActionIndexModel
+@using FPCS.Data.Enums
+@{
     ViewBag.Title = "Рекламные акции";
     ViewBag.Header = "Рекламные акции";
 }
+@Html.Hidden("PrActions", Model.PrActions, new { id = "prActions" })
 
 <div class="row-fluid">
     <div class="span12 gridWrapper">

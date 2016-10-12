@@ -19,6 +19,8 @@ namespace FPCS.Web.Admin.Models.PromotionAction
 
         public String DateFinish { get; set; }
 
-        public PrAction PrAction { get; set; }
+        public String PrAction { get; set; }
+
+        public String PrActions { get; set; }
     }
 }

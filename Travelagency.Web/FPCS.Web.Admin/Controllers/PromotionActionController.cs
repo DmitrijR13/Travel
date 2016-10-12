@@ -20,7 +20,10 @@ namespace FPCS.Web.Admin.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            PromotionActionIndexModel model = new PromotionActionIndexModel();
+            model.PrActions = String.Join(@";", FPCS.Data.Enums.PrAction.Internet.ToSelectListUsingDesc().Select(x => String.Format(@"{0}: {1}", x.Value, x.Text)));
+            //model.Init();
+            return View(model);
         }
 
         public JsonResult _Index(GridOptions options, PromotionActionListOptions promotionActionListOptions)
@@ -67,7 +70,7 @@ namespace FPCS.Web.Admin.Controllers
                 Name = x.Name,
                 DateStart = x.DateStart.ToString("dd/MM/yyyy"),
                 DateFinish = x.DateFinish.ToString("dd/MM/yyyy"),
-                PrAction = x.PrAction
+                PrAction = x.PrAction.GetDescription()
             })
             .ToList();
 
@@ -132,7 +135,8 @@ namespace FPCS.Web.Admin.Controllers
         [HttpGet]
         public PartialViewResult _Create()
         {
-            var model = new PromotionActionCreateModel();          
+            var model = new PromotionActionCreateModel();
+            model.Init();
             return PartialView(model);
         }
 

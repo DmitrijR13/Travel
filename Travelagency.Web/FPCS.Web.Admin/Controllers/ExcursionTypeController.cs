@@ -68,8 +68,8 @@ namespace FPCS.Web.Admin.Controllers
                 ExcursionTypeId = x.ExcursionTypeId,
                 PathName = x.PathName,
                 Description = x.Description,
-                TimeFrom = x.TimeFrom,
-                TimeTo = x.TimeTo,
+                TimeFrom = x.TimeFrom.GetDescription(),
+                TimeTo = x.TimeTo.GetDescription(),
                 Price = x.Price
             })
             .ToList();
@@ -135,7 +135,8 @@ namespace FPCS.Web.Admin.Controllers
         [HttpGet]
         public PartialViewResult _Create()
         {
-            var model = new ExcursionTypeCreateModel();          
+            var model = new ExcursionTypeCreateModel();
+            model.Init();     
             return PartialView(model);
         }
 

@@ -17,9 +17,9 @@ namespace FPCS.Web.Admin.Models.ExcursionType
 
         public String Description { get; set; }
 
-        public Time TimeFrom { get; set; }
+        public String TimeFrom { get; set; }
 
-        public Time TimeTo { get; set; }
+        public String TimeTo { get; set; }
 
         public Decimal Price { get; set; }
     }

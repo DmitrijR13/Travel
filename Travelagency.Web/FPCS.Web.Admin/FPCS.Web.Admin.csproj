@@ -449,6 +449,8 @@
     <Content Include="Scripts\editableAmp.js" />
     <Content Include="Scripts\emailDetail.js" />
     <Content Include="Scripts\email.js" />
+    <Content Include="Scripts\promotionAction.js" />
+    <Content Include="Scripts\expensesType.js" />
     <Content Include="Scripts\person.js" />
     <Content Include="Scripts\personEmail.js" />
     <Content Include="Scripts\fpcs.monthlyContactLog.js" />
@@ -572,6 +574,7 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\select2.full.min.js" />
     <Content Include="Scripts\worker.js" />
+    <Content Include="Scripts\excursionType.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
