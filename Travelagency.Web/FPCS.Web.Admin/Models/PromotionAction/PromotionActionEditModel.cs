@@ -31,5 +31,15 @@ namespace FPCS.Web.Admin.Models.PromotionAction
         [Required]
         [Display(Name = "Форма проведения")]
         public PrAction PrAction { get; set; }
+
+        public SelectList PrActions { get; set; }
+
+        public void Init()
+        {
+            using (var uow = UnityManager.Instance.Resolve<IUnitOfWork>())
+            {
+                PrActions = PrAction.ToSelectListUsingDesc();
+            }
+        }
     }
 }

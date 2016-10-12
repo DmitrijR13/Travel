@@ -1,0 +1,55 @@
+﻿@model FPCS.Web.Admin.Models.ExpensesType.ExpensesTypeCreateModel
+
+<div class="row-fluid">
+    <div class="span12 ">
+
+        @using (Html.BeginForm("_Create", "ExpensesType", FormMethod.Post, new { id = "createExpensesTypeForm", @class = "form-horizontal" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="control-group">
+                <div class="controls">
+                    <h3 class="lighter block green">Заполните поля для добавления нового вида расходов</h3>
+                </div>
+            </div>
+
+            <div class="controls">
+                @Html.ValidationSummary(true)
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(x => x.ExpensesName, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(x => x.ExpensesName, new { placeholder = Html.DisplayNameFor(x => x.ExpensesName), @class = "span9" })
+                    @Html.ValidationMessageFor(m => m.ExpensesName)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(x => x.Remark, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextAreaFor(x => x.Remark, new { placeholder = Html.DisplayNameFor(x => x.Remark), @class = "span9" })
+                    @Html.ValidationMessageFor(m => m.Remark)
+                </div>
+            </div>
+            <div class="form-actions">
+                <button class="btn btn-success createExpensesTypeSend" type="button">
+                    <i class="icon-ok bigger-110"></i>
+                   Сохранить
+                </button>
+                <button onclick="javascript:fpcs.closeDialog()" class="btn btn-info" type="button">
+                    <i class="icon-reply bigger-110"></i>
+                    Отменить
+                </button>
+            </div>
+        }
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    jQuery(function ($) {
+        fpcs.initDatePicker();
+        //fizPerson.initCreateEditDialog();
+    });
+</script>
+@Html.Script(Scripts.Render("~/bundles/jqueryval"))

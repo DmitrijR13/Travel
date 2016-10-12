@@ -34,5 +34,15 @@ namespace FPCS.Web.Admin.Models.ExcursionType
         [Required]
         [Display(Name = "Цена")]
         public Decimal Price { get; set; }
+
+        public SelectList Times { get; set; }
+
+        public void Init()
+        {
+            using (var uow = UnityManager.Instance.Resolve<IUnitOfWork>())
+            {
+                Times = TimeTo.ToSelectListUsingDesc();
+            }
+        }
     }
 }

@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Виды расходов";
+    ViewBag.Header = "Виды расходов";
+}
+
+<div class="row-fluid">
+    <div class="span12 gridWrapper">
+        <table id="gridTable"></table>
+        <div id="gridPager"></div>
+    </div>
+</div>
+
+@section Styles {
+    @Styles.Render("~/Content/css/jqGrid")
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqGrid")
+
+    <script type="text/javascript">
+        jQuery(function ($) {
+            expensesType.initIndexPage();
+
+            window.addEventListener("resize", function () {
+                $('.chzn-container').innerWidth($('#selecciona_paciente_estadisticas_form').innerWidth());
+                $('.chzn-search input').innerWidth($('#selecciona_paciente_estadisticas_form').innerWidth() - 12);
+                $('.chzn-drop').innerWidth($('#selecciona_paciente_estadisticas_form').innerWidth() - 2);
+            }, false);
+        });
+    </script>
+}

@@ -618,6 +618,15 @@
     <Content Include="Views\Worker\Index.cshtml" />
     <Content Include="Views\Worker\_Create.cshtml" />
     <Content Include="Views\Worker\_Edit.cshtml" />
+    <Content Include="Views\ExcursionType\_Create.cshtml" />
+    <Content Include="Views\ExcursionType\_Edit.cshtml" />
+    <Content Include="Views\ExcursionType\Index.cshtml" />
+    <Content Include="Views\ExpensesType\_Create.cshtml" />
+    <Content Include="Views\ExpensesType\_Edit.cshtml" />
+    <Content Include="Views\ExpensesType\Index.cshtml" />
+    <Content Include="Views\PromotionAction\_Create.cshtml" />
+    <Content Include="Views\PromotionAction\_Edit.cshtml" />
+    <Content Include="Views\PromotionAction\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

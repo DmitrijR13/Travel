@@ -60,7 +60,7 @@
                             @Html.LabelFor(x => x.DateOfBirth, new { @class = "control-label" })
                             <div class="controls ">
                                 <div class="row-fluid input-append">
-                                    @Html.TextBoxFor(x => x.DateOfBirth, "{0:MM/dd/yyyy}", new { placeholder = Html.DisplayNameFor(x => x.DateOfBirth), @class = "span3 date-picker", data_date_format = "mm/dd/yyyy" })
+                                    @Html.TextBoxFor(x => x.DateOfBirth, "{0:dd.MM.yyyy}", new { placeholder = Html.DisplayNameFor(x => x.DateOfBirth), @class = "span3 date-picker", data_date_format = "dd.MM.yyyy" })
                                     <span class="add-on">
                                         <i class="icon-calendar"></i>
                                     </span>
