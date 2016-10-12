@@ -249,11 +249,14 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\DictionaryController.cs" />
+    <Compile Include="Controllers\PromotionActionController.cs" />
+    <Compile Include="Controllers\ExpensesTypeController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\FizController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\ExcursionTypeController.cs" />
     <Compile Include="Controllers\WorkerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -263,6 +266,14 @@
     <Compile Include="Models\Email\EmailIndexModel.cs" />
     <Compile Include="Models\Email\EmailInfoDetailListOption.cs" />
     <Compile Include="Models\Email\EmailListOption.cs" />
+    <Compile Include="Models\PromotionAction\PromotionActionCreateModel.cs" />
+    <Compile Include="Models\PromotionAction\PromotionActionEditModel.cs" />
+    <Compile Include="Models\PromotionAction\PromotionActionIndexModel.cs" />
+    <Compile Include="Models\PromotionAction\PromotionActionListOption.cs" />
+    <Compile Include="Models\ExpensesType\ExpensesTypeCreateModel.cs" />
+    <Compile Include="Models\ExpensesType\ExpensesTypeEditModel.cs" />
+    <Compile Include="Models\ExpensesType\ExpensesTypeIndexModel.cs" />
+    <Compile Include="Models\ExpensesType\ExpensesTypeListOption.cs" />
     <Compile Include="Models\Fiz\FizSendEmailModel.cs" />
     <Compile Include="Models\Fiz\FizEditModel.cs" />
     <Compile Include="Models\Fiz\FizCreateModel.cs" />
@@ -286,6 +297,10 @@
     <Compile Include="Models\User\UserIndexModel.cs" />
     <Compile Include="Models\User\UserMiniModel.cs" />
     <Compile Include="Models\User\UsersListOptions.cs" />
+    <Compile Include="Models\ExcursionType\ExcursionTypeCreateModel.cs" />
+    <Compile Include="Models\ExcursionType\ExcursionTypeEditModel.cs" />
+    <Compile Include="Models\ExcursionType\ExcursionTypeIndexModel.cs" />
+    <Compile Include="Models\ExcursionType\ExcursionTypeListOption.cs" />
     <Compile Include="Models\Worker\WorkerCreateModel.cs" />
     <Compile Include="Models\Worker\WorkerEditModel.cs" />
     <Compile Include="Models\Worker\WorkerIndexModel.cs" />

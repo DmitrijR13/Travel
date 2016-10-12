@@ -20,6 +20,9 @@ namespace FPCS.Data
             container.RegisterType<IEmailInfoRepo, EmailInfoRepo>();
             container.RegisterType<IEmailLetterRepo, EmailLetterRepo>();
             container.RegisterType<IWorkerRepo, WorkerRepo>();
+            container.RegisterType<IExcursionTypeRepo, ExcursionTypeRepo>();
+            container.RegisterType<IExpensesTypeRepo, ExpensesTypeRepo>();
+            container.RegisterType<IPromotionActionRepo, PromotionActionRepo>();
 
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<StudentManagementContext, Configuration>());
 

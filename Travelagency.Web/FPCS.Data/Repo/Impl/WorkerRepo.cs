@@ -40,7 +40,7 @@ namespace FPCS.Data.Repo.Impl
             return worker;
         }
 
-        public Worker Update(Guid workerId, String fio, String cellPhone, String phone, String job, String email, DateTimeOffset dateStart, DateTimeOffset? datefinish)
+        public Worker Update(Int64 workerId, String fio, String cellPhone, String phone, String job, String email, DateTimeOffset dateStart, DateTimeOffset? datefinish)
         {
             var worker = this.Get(workerId);
             if (worker == null) throw new NotFoundEntityException("Сотрудник не найден");

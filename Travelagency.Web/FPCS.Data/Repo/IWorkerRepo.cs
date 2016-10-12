@@ -11,7 +11,7 @@ namespace FPCS.Data.Repo
        
         Worker Add(String fio, String cellPhone, String phone, String job, String email, DateTimeOffset dateStart, DateTimeOffset? datefinish);
 
-        Worker Update(Guid workerId, String fio, String cellPhone, String phone, String job, String email, DateTimeOffset dateStart, DateTimeOffset? datefinish);
+        Worker Update(Int64 workerId, String fio, String cellPhone, String phone, String job, String email, DateTimeOffset dateStart, DateTimeOffset? datefinish);
 
     }
 }

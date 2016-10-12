@@ -45,7 +45,7 @@ namespace FPCS.Data.Repo.Impl
             return person;
         }
 
-        public Person Update(Guid personId, String fio, String cellPhone, String phone, String fieldOfActivity, String email, WayOfInform wayOfInform, DateTimeOffset? dateOfBirth)
+        public Person Update(Int64 personId, String fio, String cellPhone, String phone, String fieldOfActivity, String email, WayOfInform wayOfInform, DateTimeOffset? dateOfBirth)
         {
             var person = this.Get(personId);
             if (person == null) throw new NotFoundEntityException("Клиент не найден");

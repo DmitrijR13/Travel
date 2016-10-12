@@ -19,7 +19,9 @@ namespace FPCS.Data
             modelBuilder.Configurations.Add(new EmailInfoConfig());
             modelBuilder.Configurations.Add(new EmailLetterConfig());
             modelBuilder.Configurations.Add(new WorkerConfig());
-
+            modelBuilder.Configurations.Add(new ExpensesTypeConfig());
+            modelBuilder.Configurations.Add(new ExcursionTypeConfig());
+            modelBuilder.Configurations.Add(new PromotionActionConfig());
         }
     }
 }
