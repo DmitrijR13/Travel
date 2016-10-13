@@ -23,6 +23,7 @@ namespace FPCS.Data
             container.RegisterType<IExcursionTypeRepo, ExcursionTypeRepo>();
             container.RegisterType<IExpensesTypeRepo, ExpensesTypeRepo>();
             container.RegisterType<IPromotionActionRepo, PromotionActionRepo>();
+            container.RegisterType<IIncomingMessageJournalRepo, IncomingMessageJournalRepo>();
 
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<StudentManagementContext, Configuration>());
 

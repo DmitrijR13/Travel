@@ -249,6 +249,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\DictionaryController.cs" />
+    <Compile Include="Controllers\IncomingMessageJournalController.cs" />
     <Compile Include="Controllers\PromotionActionController.cs" />
     <Compile Include="Controllers\ExpensesTypeController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
@@ -266,6 +267,10 @@
     <Compile Include="Models\Email\EmailIndexModel.cs" />
     <Compile Include="Models\Email\EmailInfoDetailListOption.cs" />
     <Compile Include="Models\Email\EmailListOption.cs" />
+    <Compile Include="Models\IncomingMessageJournal\IncomingMessageJournalCreateModel.cs" />
+    <Compile Include="Models\IncomingMessageJournal\IncomingMessageJournalEditModel.cs" />
+    <Compile Include="Models\IncomingMessageJournal\IncomingMessageJournalIndexModel.cs" />
+    <Compile Include="Models\IncomingMessageJournal\IncomingMessageJournalListOption.cs" />
     <Compile Include="Models\PromotionAction\PromotionActionCreateModel.cs" />
     <Compile Include="Models\PromotionAction\PromotionActionEditModel.cs" />
     <Compile Include="Models\PromotionAction\PromotionActionIndexModel.cs" />
@@ -449,6 +454,7 @@
     <Content Include="Scripts\editableAmp.js" />
     <Content Include="Scripts\emailDetail.js" />
     <Content Include="Scripts\email.js" />
+    <Content Include="Scripts\incomingMessageJournal.js" />
     <Content Include="Scripts\promotionAction.js" />
     <Content Include="Scripts\expensesType.js" />
     <Content Include="Scripts\person.js" />
@@ -630,6 +636,9 @@
     <Content Include="Views\PromotionAction\_Create.cshtml" />
     <Content Include="Views\PromotionAction\_Edit.cshtml" />
     <Content Include="Views\PromotionAction\Index.cshtml" />
+    <Content Include="Views\IncomingMessageJournal\_Create.cshtml" />
+    <Content Include="Views\IncomingMessageJournal\_Edit.cshtml" />
+    <Content Include="Views\IncomingMessageJournal\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
