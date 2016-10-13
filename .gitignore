@@ -20,3 +20,4 @@ Travelagency.Web/.vs/config/applicationhost.config
 .gitignore
 Travelagency.Web/debug.log
 Travelagency.Web/FPCS.Web.Admin/Properties/PublishProfiles/pubProfile.pubxml.user
+Travelagency.Web/FPCS.Data/FPCS.Data.csproj.orig
