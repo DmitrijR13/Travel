@@ -56,9 +56,10 @@ namespace FPCS.Web.Admin.Controllers
         {
             var repo = uow.GetRepo<IPersonRepo>();
             var fltWayOfInform = fizListOptions.WayOfInform;
+            var fltTypeFiz = fizListOptions.TypeFiz;
 
             var dbList = repo.GetPersonByType(TypePerson.FizPerson)
-                .Where(x => ((fltWayOfInform.HasValue && x.WayOfInform == fltWayOfInform.Value) || !fltWayOfInform.HasValue ))
+                .Where(x => (((fltWayOfInform.HasValue && x.WayOfInform == fltWayOfInform.Value) || !fltWayOfInform.HasValue ) && ((fltTypeFiz.HasValue && x.TypeFiz == fltTypeFiz.Value) || !fltTypeFiz.HasValue)))
                 .Select(x => new
                 {
                     PersonId = x.PersonId,
