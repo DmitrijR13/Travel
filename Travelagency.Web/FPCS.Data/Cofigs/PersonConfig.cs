@@ -25,6 +25,7 @@ namespace FPCS.Data.Cofigs
 
             Property(x => x.WayOfInform).IsRequired();
             Property(x => x.TypePerson).IsRequired();
+            Property(x => x.TypeFiz);
         }
     }
 }

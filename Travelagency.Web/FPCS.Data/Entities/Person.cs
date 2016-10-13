@@ -25,6 +25,8 @@ namespace FPCS.Data.Entities
 
         public WayOfInform WayOfInform { get; set; }
 
+        public TypeFiz TypeFiz { get; set; }
+
         public DateTimeOffset? DateOfBirth { get; set; }
 
         public virtual ICollection<EmailInfo> EmailInfos { get; set; }

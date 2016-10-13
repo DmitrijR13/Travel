@@ -25,7 +25,7 @@ namespace FPCS.Data.Repo.Impl
             return GetAll().Where(x => x.IsDeleted == false);
         }
 
-        public Person Add(String fio, String cellPhone, String phone, String fieldOfActivity, String email, WayOfInform wayOfInform, DateTimeOffset? dateOfBirth, TypePerson typePerson)
+        public Person Add(String fio, String cellPhone, String phone, String fieldOfActivity, String email, WayOfInform wayOfInform, DateTimeOffset? dateOfBirth, TypePerson typePerson, TypeFiz typeFiz)
         {
             var person =
                 Add(
@@ -39,13 +39,14 @@ namespace FPCS.Data.Repo.Impl
                     Phone = phone,
                     WayOfInform = wayOfInform,
                     TypePerson = typePerson,
+                    TypeFiz = typeFiz,
                     CreatedDate = DateTime.Now
                 });
 
             return person;
         }
 
-        public Person Update(Int64 personId, String fio, String cellPhone, String phone, String fieldOfActivity, String email, WayOfInform wayOfInform, DateTimeOffset? dateOfBirth)
+        public Person Update(Int64 personId, String fio, String cellPhone, String phone, String fieldOfActivity, String email, WayOfInform wayOfInform, DateTimeOffset? dateOfBirth, TypeFiz typeFiz)
         {
             var person = this.Get(personId);
             if (person == null) throw new NotFoundEntityException("Клиент не найден");
@@ -57,6 +58,7 @@ namespace FPCS.Data.Repo.Impl
             person.FIO = fio;
             person.Phone = phone;
             person.WayOfInform = wayOfInform;
+            person.TypeFiz = typeFiz;
             person.UpdatedDate = DateTimeOffset.Now;
 
 

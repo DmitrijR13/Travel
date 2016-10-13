@@ -15,7 +15,7 @@
                 repeatitems: false,
                 id: "PersonId"
             },
-            colNames: ['PersonId', 'ФИО', 'Телефоны', 'FieldOfActivity', 'Email', 'Способ информирования', 'Дата рождения', 'Действия'],
+            colNames: ['PersonId', 'ФИО', 'Телефоны', 'FieldOfActivity', 'Email', 'Способ информирования', 'Дата рождения', 'Тип клиента', 'Действия'],
             colModel: [
 				{ name: 'PersonId', index: 'PersonId', key: true, hidden: true },
 				{
@@ -46,6 +46,16 @@
                 {
                     name: 'DateOfBirth', index: 'DateOfBirth', width: 90
                 },
+                {
+                     name: 'TypeFiz', index: 'TypeFiz', width: 80,
+                     stype: "select",
+                     searchoptions: {
+                         value: ":Все;" + $("#typeFizs").val(),
+                         defaultValue: ""
+                     },
+                     sortable: false
+                },
+
                 { name: 'act', index: 'act', width: 90, fixed: true, sortable: false, resize: false, search: false }
             ],
             rowButtons: [

@@ -10,9 +10,9 @@ namespace FPCS.Data.Repo
     {
         IQueryable<Person> GetAllFiz();
 
-        Person Add(String fio, String cellPhone, String phone, String fieldOfActivity, String email, WayOfInform wayOfInform, DateTimeOffset? dateOfBirth, TypePerson typePerson);
+        Person Add(String fio, String cellPhone, String phone, String fieldOfActivity, String email, WayOfInform wayOfInform, DateTimeOffset? dateOfBirth, TypePerson typePerson, TypeFiz typeFiz);
 
-        Person Update(Int64 personId, String fio, String cellPhone, String phone, String fieldOfActivity, String email, WayOfInform wayOfInform, DateTimeOffset? dateOfBirth);
+        Person Update(Int64 personId, String fio, String cellPhone, String phone, String fieldOfActivity, String email, WayOfInform wayOfInform, DateTimeOffset? dateOfBirth, TypeFiz typeFiz);
 
         IQueryable<Person> GetEmailById(String ids);
 

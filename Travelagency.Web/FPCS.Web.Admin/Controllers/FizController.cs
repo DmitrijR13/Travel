@@ -22,6 +22,7 @@ namespace FPCS.Web.Admin.Controllers
         {
             FizIndexModel model = new FizIndexModel();
             model.WayOfInform = String.Join(@";", FPCS.Data.Enums.WayOfInform.Email.ToSelectListUsingDesc().Select(x => String.Format(@"{0}: {1}", x.Value, x.Text)));
+            model.TypeFiz = String.Join(@";", FPCS.Data.Enums.TypeFiz.Private.ToSelectListUsingDesc().Select(x => String.Format(@"{0}: {1}", x.Value, x.Text)));
             //model.Init();
             return View(model);
         }
@@ -42,7 +43,8 @@ namespace FPCS.Web.Admin.Controllers
                     PersonId = x.PersonId,
                     Email = x.Email,
                     FieldOfActivity = x.FieldOfActivity,
-                    FIO = x.FIO
+                    FIO = x.FIO,
+                    TypeFiz = x.TypeFiz
                 });
 
                 return Json(result);
@@ -65,7 +67,8 @@ namespace FPCS.Web.Admin.Controllers
                     FieldOfActivity = x.FieldOfActivity,
                     Email = x.Email,
                     DateOfBirth = x.DateOfBirth,
-                    WayOfInform = x.WayOfInform
+                    WayOfInform = x.WayOfInform,
+                    TypeFiz = x.TypeFiz
                 })
                                 .ToList();
 
@@ -78,7 +81,8 @@ namespace FPCS.Web.Admin.Controllers
                 FieldOfActivity = x.FieldOfActivity,
                 Email = x.Email,
                 DateOfBirth = x.DateOfBirth.HasValue ? x.DateOfBirth.Value.ToString("dd/MM/yyyy") : String.Empty,
-                WayOfInform = x.WayOfInform.GetDescription()
+                WayOfInform = x.WayOfInform.GetDescription(),
+                TypeFiz = x.TypeFiz.GetDescription()
             })
             .ToList();
 
@@ -160,7 +164,7 @@ namespace FPCS.Web.Admin.Controllers
                     {
                         var repo = uow.GetRepo<IPersonRepo>();
 
-                        var dbEntity = repo.Add(model.FIO, model.CellPhone, model.Phone, model.FieldOfActivity, model.Email, model.WayOfInform, model.DateOfBirth, TypePerson.FizPerson);
+                        var dbEntity = repo.Add(model.FIO, model.CellPhone, model.Phone, model.FieldOfActivity, model.Email, model.WayOfInform, model.DateOfBirth, TypePerson.FizPerson, model.TypeFiz);
 
                         uow.Commit();
                       
@@ -250,7 +254,8 @@ namespace FPCS.Web.Admin.Controllers
                     FieldOfActivity = dbEntity.FieldOfActivity,
                     FIO = dbEntity.FIO,
                     Phone = dbEntity.Phone,
-                    WayOfInform = dbEntity.WayOfInform
+                    WayOfInform = dbEntity.WayOfInform,
+                    TypeFiz = dbEntity.TypeFiz
                 };
 
                 model.Init();
@@ -281,6 +286,7 @@ namespace FPCS.Web.Admin.Controllers
                         dbEntity.Phone = model.Phone;
                         dbEntity.UpdatedDate = DateTime.Now;
                         dbEntity.WayOfInform = model.WayOfInform;
+                        dbEntity.TypeFiz = model.TypeFiz;
 
                         repo.Update(dbEntity);
 

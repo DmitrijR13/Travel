@@ -39,13 +39,19 @@ namespace FPCS.Web.Admin.Models.Fiz
         [Display(Name = "Способ информирования")]
         public WayOfInform WayOfInform { get; set; }
 
+        [Display(Name = "Тип клиента")]
+        public TypeFiz TypeFiz { get; set; }
+
         public SelectList WayOfInforms { get; set; }
+
+        public SelectList TypeFizs { get; set; }
 
         public void Init()
         {
             using (var uow = UnityManager.Instance.Resolve<IUnitOfWork>())
             {
                 WayOfInforms = WayOfInform.ToSelectListUsingDesc();
+                TypeFizs = TypeFiz.ToSelectListUsingDesc();
             }
         }
     }

@@ -23,6 +23,8 @@ namespace FPCS.Web.Admin.Models.Fiz
 
         public String WayOfInform { get; set; }
 
+        public String TypeFiz { get; set; }
+
         public String DateOfBirth { get; set; }
 
         public void Init()
@@ -39,7 +41,8 @@ namespace FPCS.Web.Admin.Models.Fiz
                         Phones = x.Phone + (x.CellPhone != "" ? "(" + x.CellPhone + ")" : ""),
                         FieldOfActivity = x.FieldOfActivity,
                         Email = x.Email,
-                        WayOfInform = x.WayOfInform
+                        WayOfInform = x.WayOfInform,
+                        TypeFiz = x.TypeFiz
                     })
                     .ToList();
             }

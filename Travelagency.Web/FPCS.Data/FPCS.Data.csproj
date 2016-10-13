@@ -118,6 +118,7 @@
     <Compile Include="Entities\Worker.cs" />
     <Compile Include="Entities\Person.cs" />
     <Compile Include="Enums\Role.cs" />
+    <Compile Include="Enums\TypeFiz.cs" />
     <Compile Include="Enums\TypePerson.cs" />
     <Compile Include="Enums\PrAction.cs" />
     <Compile Include="Enums\Time.cs" />
@@ -159,6 +160,10 @@
     <Compile Include="Migrations\201610121145509_12_10_2016_01.cs" />
     <Compile Include="Migrations\201610121145509_12_10_2016_01.Designer.cs">
       <DependentUpon>201610121145509_12_10_2016_01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610131033263_13_10_2016_00.cs" />
+    <Compile Include="Migrations\201610131033263_13_10_2016_00.Designer.cs">
+      <DependentUpon>201610131033263_13_10_2016_00.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -216,6 +221,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610121145509_12_10_2016_01.resx">
       <DependentUpon>201610121145509_12_10_2016_01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610131033263_13_10_2016_00.resx">
+      <DependentUpon>201610131033263_13_10_2016_00.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

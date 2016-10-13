@@ -19,6 +19,9 @@ namespace FPCS.Web.Admin.Models.Fiz
         [GridProperty(ExtensionType.Filter, false)]
         public WayOfInform? WayOfInform { get; set; }
 
+        [GridProperty(ExtensionType.Filter, false)]
+        public TypeFiz? TypeFiz { get; set; }
+
         [GridProperty(ExtensionType.All, true, FilterOperation.Contains)]
         public String Phones { get; set; }
 
