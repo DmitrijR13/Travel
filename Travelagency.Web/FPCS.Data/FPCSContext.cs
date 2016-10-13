@@ -22,6 +22,7 @@ namespace FPCS.Data
             modelBuilder.Configurations.Add(new ExpensesTypeConfig());
             modelBuilder.Configurations.Add(new ExcursionTypeConfig());
             modelBuilder.Configurations.Add(new PromotionActionConfig());
+            modelBuilder.Configurations.Add(new IncomingMessageJournalConfig());
         }
     }
 }

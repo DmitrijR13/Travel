@@ -28,7 +28,8 @@ namespace FPCS.Data.Repo.Impl
                 {
                     PersonId = personId,
                     EmailLetterId = emailLetterId,
-                    CreatedDate = DateTime.Now
+                    CreatedDate = DateTime.Now,
+                    UpdatedDate = DateTime.Now
                 });
 
             return emailInfo;

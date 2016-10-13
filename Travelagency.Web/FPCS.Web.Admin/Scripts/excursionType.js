@@ -19,8 +19,8 @@
             colModel: [
 				{ name: 'ExcursionTypeId', index: 'ExcursionTypeId', key: true, hidden: true },
 				{
-				    name: 'PathName', index: 'PathName', width: 65,
-				    sortable: true
+                    name: 'PathName', index: 'PathName', width: 65,
+                    sortable: true
 				},
                 {
                     name: 'Description', index: 'Description', width: 65,
@@ -45,7 +45,7 @@
                     sortable: false
                 },
 				{
-				    name: 'Price', index: 'Price', width: 90
+                    name: 'Price', index: 'Price', width: 90
 				},
                 { name: 'act', index: 'act', width: 90, fixed: true, sortable: false, resize: false, search: false }
             ]
