@@ -115,12 +115,15 @@
     <Compile Include="Entities\ExpensesType.cs" />
     <Compile Include="Entities\ExcursionType.cs" />
     <Compile Include="Entities\PromotionAction.cs" />
+    <Compile Include="Entities\IncomingMessageJournal.cs" />
     <Compile Include="Entities\Worker.cs" />
     <Compile Include="Entities\Person.cs" />
+    <Compile Include="Enums\SourceInfo.cs" />
     <Compile Include="Enums\Role.cs" />
     <Compile Include="Enums\TypePerson.cs" />
     <Compile Include="Enums\PrAction.cs" />
     <Compile Include="Enums\Time.cs" />
+    <Compile Include="Enums\IncomingSource.cs" />
     <Compile Include="Enums\WayOfInform.cs" />
     <Compile Include="Exceptions\ChildEntityRelationException.cs" />
     <Compile Include="Exceptions\InvalidRangeException.cs" />

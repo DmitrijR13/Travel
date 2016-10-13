@@ -28,5 +28,7 @@ namespace FPCS.Data.Entities
         public DateTimeOffset? DateOfBirth { get; set; }
 
         public virtual ICollection<EmailInfo> EmailInfos { get; set; }
+
+        public virtual ICollection<IncomingMessageJournal> IncomingMessageJournals { get; set; }
     }
 }

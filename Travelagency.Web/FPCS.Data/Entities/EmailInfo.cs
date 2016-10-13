@@ -19,6 +19,5 @@ namespace FPCS.Data.Entities
 
         public virtual EmailLetter EmailLetter { get; set; }
         public virtual Person Person { get; set; }
-
     }
 }
