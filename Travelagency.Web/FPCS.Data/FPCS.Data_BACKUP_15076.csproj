@@ -165,13 +165,15 @@
     <Compile Include="Migrations\201610121145509_12_10_2016_01.Designer.cs">
       <DependentUpon>201610121145509_12_10_2016_01.cs</DependentUpon>
     </Compile>
+<<<<<<< .merge_file_a19484
     <Compile Include="Migrations\201610131033263_13_10_2016_00.cs" />
     <Compile Include="Migrations\201610131033263_13_10_2016_00.Designer.cs">
       <DependentUpon>201610131033263_13_10_2016_00.cs</DependentUpon>
-    </Compile>
+=======
     <Compile Include="Migrations\201610131114474_13_10_2016_01.cs" />
     <Compile Include="Migrations\201610131114474_13_10_2016_01.Designer.cs">
       <DependentUpon>201610131114474_13_10_2016_01.cs</DependentUpon>
+>>>>>>> .merge_file_a05560
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -232,8 +234,13 @@
     <EmbeddedResource Include="Migrations\201610121145509_12_10_2016_01.resx">
       <DependentUpon>201610121145509_12_10_2016_01.cs</DependentUpon>
     </EmbeddedResource>
+<<<<<<< .merge_file_a19484
     <EmbeddedResource Include="Migrations\201610131033263_13_10_2016_00.resx">
       <DependentUpon>201610131033263_13_10_2016_00.cs</DependentUpon>
+=======
+    <EmbeddedResource Include="Migrations\201610131114474_13_10_2016_01.resx">
+      <DependentUpon>201610131114474_13_10_2016_01.cs</DependentUpon>
+>>>>>>> .merge_file_a05560
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

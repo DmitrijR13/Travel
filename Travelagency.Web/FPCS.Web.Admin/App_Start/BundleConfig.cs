@@ -88,6 +88,7 @@ namespace FPCS.Web.Admin
                         "~/Scripts/excursionType.js",
                         "~/Scripts/expensesType.js",
                         "~/Scripts/promotionAction.js",
+                        "~/Scripts/incomingMessageJournal.js",
                         "~/Scripts/email.js",
                         "~/Scripts/emailDetail.js",
                         "~/Scripts/person.js",

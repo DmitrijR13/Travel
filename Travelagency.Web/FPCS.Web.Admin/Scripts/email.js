@@ -19,8 +19,8 @@
             colModel: [
 				{ name: 'EmailLetterId', index: 'EmailLetterId', key: true, hidden: true },
 				{
-				    name: 'Theme', index: 'Theme', width: 65,
-				    sortable: true
+                    name: 'Theme', index: 'Theme', width: 65,
+                    sortable: true
 				},
                 {
                     name: 'Body', index: 'Body', width: 400,

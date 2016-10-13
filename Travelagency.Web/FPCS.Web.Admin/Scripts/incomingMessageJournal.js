@@ -1,73 +1,85 @@
-﻿excursionType = {
+﻿incomingMessageJournal = {
 
     initIndexPage: function () {
         fpcs.jqGrid.initGrid({
             gridWrapper: ".gridWrapper",
             gridSelector: "#gridTable",
             pagerSelector: "#gridPager",
-            localStorageId: "ExcursionType",
-            url: "/ExcursionType/_Index",
+            localStorageId: "IncomingMessageJournal",
+            url: "/IncomingMessageJournal/_Index",
             rowNum: 100000,
             showEditButton: true,
             showDeleteButton: true,
-            sortname: 'PathName',
+            sortname: 'Fio',
             jsonReader: {
                 repeatitems: false,
-                id: "ExcursionTypeId"
+                id: "IncomingMessageJournalId"
             },
-            colNames: ['ExcursionTypeId', 'Наименование маршрута', 'Краткое описание', 'Начало', 'Окончание', 'Цена', 'Действия'],
+            colNames: ['IncomingMessageJournalId', 'Дата', 'ФИО', 'Телефон', 'Содержание заявки', 'Принял', 'Ответсвенный',
+                'Источник поступления', 'Результат', 'Источник информации о нас', 'Действия'],
             colModel: [
-				{ name: 'ExcursionTypeId', index: 'ExcursionTypeId', key: true, hidden: true },
+				{ name: 'PromotionActionId', index: 'PromotionActionId', key: true, hidden: true },
 				{
-                    name: 'PathName', index: 'PathName', width: 65,
+                    name: 'Date', index: 'Date', width: 65,
                     sortable: true
 				},
                 {
-                    name: 'Description', index: 'Description', width: 65,
-                    sortable: false
+                    name: 'Fio', index: 'Fio', width: 90
                 },
                 {
-                    name: 'TimeFrom', index: 'TimeFrom', width: 80,
+                    name: 'Phones', index: 'Phones', width: 90
+                },
+                {
+                    name: 'RequestContent', index: 'RequestContent', width: 90
+                },
+                {
+                    name: 'AcceptedByWorkerFio', index: 'AcceptedByWorkerFio', width: 90
+                },
+                {
+                    name: 'ResponsibleWorkerFio', index: 'ResponsibleWorkerFio', width: 90
+                },
+                {
+                    name: 'IncomingSource', index: 'IncomingSource', width: 80,
                     stype: "select",
                     searchoptions: {
-                        value: ":Все;" + $("#times").val(),
+                        value: ":Все;" + $("#incomingSources").val(),
                         defaultValue: ""
                     },
                     sortable: false
                 },
                 {
-                    name: 'TimeTo', index: 'TimeTo', width: 80,
+                    name: 'Result', index: 'Result', width: 90
+                },
+                {
+                    name: 'SourceInfo', index: 'SourceInfo', width: 80,
                     stype: "select",
                     searchoptions: {
-                        value: ":Все;" + $("#times").val(),
+                        value: ":Все;" + $("#sourceInfos").val(),
                         defaultValue: ""
                     },
                     sortable: false
                 },
-				{
-                    name: 'Price', index: 'Price', width: 90
-				},
                 { name: 'act', index: 'act', width: 90, fixed: true, sortable: false, resize: false, search: false }
             ]
         });
 
         fpcs.jqGrid.initGridResize();
-        fpcs.jqGrid.initFilterToolbar("ExcursionType");
+        fpcs.jqGrid.initFilterToolbar("IncomingMessageJournal");
 
-        fpcs.jqGrid.initNavButtons("/ExcursionType/DeleteAll", excursionType.showCreateDialog, "Добавить новый вид экскурсии");
+        fpcs.jqGrid.initNavButtons("/IncomingMessageJournal/DeleteAll", incomingMessageJournal.showCreateDialog, "Добавить новую заявку");
     //    personEmail.initPersonEmailButton();
        
         //fpcs.jqGrid.initNavSendEmailButton(fizPerson.initSendEmail);
        // fpcs.jqGrid.initNavSendEmailButton(fizPerson.showSendEmailDialog, "Отправить email");
 
         //fizPerson.initDetailsDialog();
-        excursionType.initCreateDialogSend();
-        excursionType.initEditDialog();
-        excursionType.initDeleteOneEntity();
+        incomingMessageJournal.initCreateDialogSend();
+        incomingMessageJournal.initEditDialog();
+        incomingMessageJournal.initDeleteOneEntity();
        // fizPerson.sendEmail();
 
         $(window).unload(function () {
-            fpcs.jqGrid.saveLocalStorage("ExcursionType");
+            fpcs.jqGrid.saveLocalStorage("IncomingMessageJournal");
         });
     },
 
@@ -85,31 +97,31 @@
     //},
 
     showCreateDialog: function () {
-        fpcs.getPartial('/ExcursionType/_Create/', function (data, textStatus) {
-            fpcs.showDialog("Добавить новую экскурсию", data);
+        fpcs.getPartial('/IncomingMessageJournal/_Create/', function (data, textStatus) {
+            fpcs.showDialog("Добавить новую заявку", data);
         });
     },
 
 
     initCreateDialogSend: function () {
-        $(document).off("click", ".createExcursionTypeSend");
-        $(document).on("click", ".createExcursionTypeSend", function (e) {
+        $(document).off("click", ".createIncomingMessageJournalSend");
+        $(document).on("click", ".createIncomingMessageJournalSend", function (e) {
             e.preventDefault();
-            fpcs.sendForm("createExcursionTypeForm", function (data, textStatus) {
+            fpcs.sendForm("createIncomingMessageJournalForm", function (data, textStatus) {
                 if (typeof data == "object" && data.ErrorCode == 200) {
-                    excursionType.reloadGrid();
+                    incomingMessageJournal.reloadGrid();
                     fpcs.closeDialog();
                 }
                 else {
-                    fpcs.showDialog("Добавить новую экскурсию", data);
+                    fpcs.showDialog("Добавить новую заявку", data);
                 }
             });
         });
     },
 
     showEditDialog: function (id) {
-        fpcs.getPartial('/ExcursionType/_Edit/' + id, function (data, textStatus) {
-            fpcs.showDialog("Изменить данные об экскурсии", data);
+        fpcs.getPartial('/IncomingMessageJournal/_Edit/' + id, function (data, textStatus) {
+            fpcs.showDialog("Изменить данные о заявке", data);
         });
     },
 
@@ -124,19 +136,19 @@
         $(document).off("click", ".gridRowEdit");
         $(document).on("click", ".gridRowEdit", function (e) {
             var id = $(this).attr("rowid");
-            excursionType.showEditDialog(id);
+            incomingMessageJournal.showEditDialog(id);
         });
 
-        $(document).off("click", ".editExcursionTypeSend");
-        $(document).on("click", ".editExcursionTypeSend", function (e) {
+        $(document).off("click", ".editIncomingMessageJournalSend");
+        $(document).on("click", ".editIncomingMessageJournalSend", function (e) {
             e.preventDefault();
-            fpcs.sendForm("editExcursionTypeForm", function (data, textStatus) {
+            fpcs.sendForm("editIncomingMessageJournalForm", function (data, textStatus) {
                 if (typeof data == "object" && data.ErrorCode == 200) {
-                    excursionType.reloadGrid();
+                    incomingMessageJournal.reloadGrid();
                     fpcs.closeDialog();
                 }
                 else {
-                    fpcs.showDialog("Изменить данные об экскурсии", data);
+                    fpcs.showDialog("Изменить данные о заявке", data);
                 }
             });
         });
@@ -146,9 +158,9 @@
         $(document).off("click", ".gridRowDelete");
         $(document).on("click", ".gridRowDelete", function (e) {
             var id = $(this).attr("rowid");
-            var url = "/ExcursionType/Delete/" + id;
+            var url = "/IncomingMessageJournal/Delete/" + id;
             fpcs.executeServiceWithConfirm(url, null, function () {
-                excursionType.reloadGrid();
+                incomingMessageJournal.reloadGrid();
             });
         });
     },

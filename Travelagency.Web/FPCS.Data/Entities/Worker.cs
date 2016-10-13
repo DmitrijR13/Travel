@@ -25,5 +25,8 @@ namespace FPCS.Data.Entities
 
         public DateTimeOffset? DateFinish { get; set; }
 
+        public virtual ICollection<IncomingMessageJournal> AcceptedsBy { get; set; }
+
+        public virtual ICollection<IncomingMessageJournal> Responsibles { get; set; }
     }
 }
