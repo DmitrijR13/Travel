@@ -1,6 +1,10 @@
-﻿@{
+﻿@model FPCS.Web.Admin.Models.ExcursionType.ExcursionTypeIndexModel
+@using FPCS.Data.Enums
+@{
     ViewBag.Title = "Виды экскурсий";
     ViewBag.Header = "Виды экскурсий";
+
+    @Html.Hidden("Times", Model.Times, new { id = "times" })
 }
 
 <div class="row-fluid">
@@ -9,6 +13,7 @@
         <div id="gridPager"></div>
     </div>
 </div>
+
 
 @section Styles {
     @Styles.Render("~/Content/css/jqGrid")

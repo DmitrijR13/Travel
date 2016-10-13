@@ -20,7 +20,10 @@ namespace FPCS.Web.Admin.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            ExcursionTypeIndexModel model = new ExcursionTypeIndexModel();
+            model.Times = String.Join(@";", FPCS.Data.Enums.Time.Eight.ToSelectListUsingDesc().Select(x => String.Format(@"{0}: {1}", x.Value, x.Text)));
+            //model.Init();
+            return View(model);
         }
 
         public JsonResult _Index(GridOptions options, ExcursionTypeListOptions excursionTypeListOptions)
