@@ -7,13 +7,13 @@ namespace FPCS.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class _13_10_2016_00 : IMigrationMetadata
+    public sealed partial class _14_10_2016_00 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(_13_10_2016_00));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(_14_10_2016_00));
         
         string IMigrationMetadata.Id
         {
-            get { return "201610131033263_13_10_2016_00"; }
+            get { return "201610140831012_14_10_2016_00"; }
         }
         
         string IMigrationMetadata.Source

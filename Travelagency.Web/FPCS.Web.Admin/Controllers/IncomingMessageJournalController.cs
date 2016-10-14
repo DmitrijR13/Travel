@@ -151,41 +151,42 @@ namespace FPCS.Web.Admin.Controllers
             }
         }
 
-        //[HttpGet]
-        //public PartialViewResult _Create()
-        //{
-        //    var model = new PromotionActionCreateModel();
-        //    model.Init();
-        //    return PartialView(model);
-        //}
+        [HttpGet]
+        public PartialViewResult _Create()
+        {
+            var model = new IncomingMessageJournalCreateModel();
+            model.Init();
+            return PartialView(model);
+        }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult _Create(PromotionActionCreateModel model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            using (var uow = UnityManager.Resolve<IUnitOfWork>())
-        //            {
-        //                var repo = uow.GetRepo<IPromotionActionRepo>();
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult _Create(IncomingMessageJournalCreateModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    using (var uow = UnityManager.Resolve<IUnitOfWork>())
+                    {
+                        var repo = uow.GetRepo<IIncomingMessageJournalRepo>();
 
-        //                var dbEntity = repo.Add(model.Name, model.DateStart, model.DateFinish, model.PrAction);
+                        var dbEntity = repo.Add(model.Date, model.PersonId, model.RequestContent, model.AcceptedById, 
+                            model.ResponsibleId, model.IncomingSource, model.Result, model.SourceInfo);
 
-        //                uow.Commit();
-                      
-        //                return JsonRes(dbEntity.PromotionActionId.ToString());
-        //            }
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            ModelState.AddModelError("", ex.Message);
-        //        }
-        //    }
-           
-        //    return PartialView(model);
-        //}
+                        uow.Commit();
+
+                        return JsonRes(dbEntity.IncomingMessageJournalId.ToString());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", ex.Message);
+                }
+            }
+
+            return PartialView(model);
+        }
 
         //[HttpGet]
         //public ActionResult SendEmail(String[] ids)
@@ -243,62 +244,71 @@ namespace FPCS.Web.Admin.Controllers
         //}
 
 
-        //[HttpGet]
-        //public PartialViewResult _Edit(Int64 id)
-        //{
-        //    using (var uow = UnityManager.Resolve<IUnitOfWork>())
-        //    {
-        //        var dbEntity = uow.GetRepo<IPromotionActionRepo>().Get(id);
-        //        if (dbEntity == null) return ErrorPartial("Рекламная акция {0} не найдена", id);
+        [HttpGet]
+        public PartialViewResult _Edit(Int64 id)
+        {
+            using (var uow = UnityManager.Resolve<IUnitOfWork>())
+            {
+                var dbEntity = uow.GetRepo<IIncomingMessageJournalRepo>().Get(id);
+                if (dbEntity == null) return ErrorPartial("Заявка {0} не найдена", id);
 
 
-        //        var model = new PromotionActionEditModel
-        //        {
-        //            PromotionActionId = dbEntity.PromotionActionId,
-        //            Name = dbEntity.Name,
-        //            DateStart = dbEntity.DateStart,
-        //            DateFinish = dbEntity.DateFinish,
-        //            PrAction = dbEntity.PrAction
-        //        };
-        //     return PartialView(model);
-        //    }
-        //}
+                var model = new IncomingMessageJournalEditModel
+                {
+                    IncomingMessageJournalId = dbEntity.IncomingMessageJournalId,
+                    Date = dbEntity.Date,
+                    PersonId = dbEntity.PersonId,
+                    RequestContent = dbEntity.RequestContent,
+                    AcceptedById = dbEntity.AcceptedById,
+                    ResponsibleId = dbEntity.ResponsibleId,
+                    IncomingSource = dbEntity.IncomingSource,
+                    Result = dbEntity.Result,
+                    SourceInfo = dbEntity.SourceInfo
+                };
+                model.Init();
+                return PartialView(model);
+            }
+        }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult _Edit(PromotionActionEditModel model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            using (var uow = UnityManager.Resolve<IUnitOfWork>())
-        //            {
-        //                var repo = uow.GetRepo<IPromotionActionRepo>();
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult _Edit(IncomingMessageJournalEditModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    using (var uow = UnityManager.Resolve<IUnitOfWork>())
+                    {
+                        var repo = uow.GetRepo<IIncomingMessageJournalRepo>();
 
-        //                var dbEntity = repo.Get(model.PromotionActionId);
-        //                if (dbEntity == null) throw new NotFoundEntityException("Рекламная акция не найдена");
+                        var dbEntity = repo.Get(model.IncomingMessageJournalId);
+                        if (dbEntity == null) throw new NotFoundEntityException("Заявка не найдена");
 
-        //                dbEntity.DateFinish = model.DateFinish;
-        //                dbEntity.DateStart = model.DateStart;
-        //                dbEntity.Name = model.Name;
-        //                dbEntity.PrAction = model.PrAction;
-        //                dbEntity.UpdatedDate = DateTime.Now;
+                        dbEntity.Date = model.Date;
+                        dbEntity.PersonId = model.PersonId;
+                        dbEntity.RequestContent = model.RequestContent;
+                        dbEntity.AcceptedById = model.AcceptedById;
+                        dbEntity.ResponsibleId = model.ResponsibleId;
+                        dbEntity.IncomingSource = model.IncomingSource;
+                        dbEntity.Result = model.Result;
+                        dbEntity.SourceInfo = model.SourceInfo;
+                        dbEntity.UpdatedDate = DateTime.Now;
 
-        //                repo.Update(dbEntity);
+                        repo.Update(dbEntity);
 
-        //                uow.Commit();
+                        uow.Commit();
 
-        //                return JsonRes(new { PersonId = dbEntity.PromotionActionId});
-        //            }
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            ModelState.AddModelError("", ex.Message);
-        //        }
-        //    }
+                        return JsonRes(new { PersonId = dbEntity.IncomingMessageJournalId });
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", ex.Message);
+                }
+            }
 
-        //    return PartialView(model);
-        //}
+            return PartialView(model);
+        }
     }
 }

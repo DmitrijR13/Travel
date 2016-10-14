@@ -245,7 +245,8 @@ namespace FPCS.Web.Admin.Controllers
                     TimeTo = dbEntity.TimeTo,
                     Price = dbEntity.Price
                 };
-             return PartialView(model);
+                model.Init();
+                return PartialView(model);
             }
         }
 

@@ -1,15 +1,15 @@
-﻿@model FPCS.Web.Admin.Models.PromotionAction.PromotionActionCreateModel
+﻿@model FPCS.Web.Admin.Models.IncomingMessageJournal.IncomingMessageJournalCreateModel
 
 <div class="row-fluid">
     <div class="span12 ">
 
-        @using (Html.BeginForm("_Create", "PromotionAction", FormMethod.Post, new { id = "createPromotionActionForm", @class = "form-horizontal" }))
+        @using (Html.BeginForm("_Create", "IncomingMessageJournal", FormMethod.Post, new { id = "createIncomingMessageJournalForm", @class = "form-horizontal" }))
         {
             @Html.AntiForgeryToken()
 
             <div class="control-group">
                 <div class="controls">
-                    <h3 class="lighter block green">Заполните поля для добавления новой рекламной акции</h3>
+                    <h3 class="lighter block green">Заполните поля для добавления заявки</h3>
                 </div>
             </div>
 
@@ -17,45 +17,68 @@
                 @Html.ValidationSummary(true)
             </div>
             <div class="control-group">
-                @Html.LabelFor(x => x.Name, new { @class = "control-label" })
-                <div class="controls">
-                    @Html.TextBoxFor(x => x.Name, new { placeholder = Html.DisplayNameFor(x => x.Name), @class = "span9" })
-                    @Html.ValidationMessageFor(m => m.Name)
-                </div>
-            </div>
-            <div class="control-group">
-                @Html.LabelFor(x => x.DateStart, new { @class = "control-label" })
+                @Html.LabelFor(x => x.Date, new { @class = "control-label" })
                 <div class="controls ">
                     <div class="row-fluid input-append">
-                        @Html.TextBoxFor(x => x.DateStart, "{0:dd.MM.yyyy}", new { placeholder = Html.DisplayNameFor(x => x.DateStart), @class = "span3 date-picker", data_date_format = "dd.MM.yyyy" })
+                        @Html.TextBoxFor(x => x.Date, "{0:dd.MM.yyyy}", new { placeholder = Html.DisplayNameFor(x => x.Date), @class = "span3 date-picker", data_date_format = "dd.MM.yyyy" })
                         <span class="add-on">
                             <i class="icon-calendar"></i>
                         </span>
-                        @Html.ValidationMessageFor(m => m.DateStart)
+                        @Html.ValidationMessageFor(m => m.Date)
                     </div>
                 </div>
             </div>
             <div class="control-group">
-                @Html.LabelFor(x => x.DateFinish, new { @class = "control-label" })
-                <div class="controls ">
-                    <div class="row-fluid input-append">
-                        @Html.TextBoxFor(x => x.DateFinish, "{0:dd.MM.yyyy}", new { placeholder = Html.DisplayNameFor(x => x.DateFinish), @class = "span3 date-picker", data_date_format = "dd.MM.yyyy" })
-                        <span class="add-on">
-                            <i class="icon-calendar"></i>
-                        </span>
-                        @Html.ValidationMessageFor(m => m.DateFinish)
-                    </div>
+                @Html.LabelFor(x => x.PersonId, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.DropDownListFor(x => x.PersonId, Model.Persons, new { @class = "span6" })
+                    @Html.ValidationMessageFor(m => m.PersonId)
                 </div>
             </div>
             <div class="control-group">
-                @Html.LabelFor(x => x.PrAction, new { @class = "control-label" })
+                @Html.LabelFor(x => x.RequestContent, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.DropDownListFor(x => x.PrAction, Model.PrActions, new { @class = "span9" })
-                    @Html.ValidationMessageFor(m => m.PrAction)
+                    @Html.TextAreaFor(x => x.RequestContent, new { placeholder = Html.DisplayNameFor(x => x.RequestContent), @class = "span6" })
+                    @Html.ValidationMessageFor(m => m.RequestContent)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(x => x.AcceptedById, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.DropDownListFor(x => x.AcceptedById, Model.AcceptedsByWorkers, new { @class = "span6" })
+                    @Html.ValidationMessageFor(m => m.AcceptedById)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(x => x.ResponsibleId, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.DropDownListFor(x => x.ResponsibleId, Model.ResponsibleWorkers, new { @class = "span6" })
+                    @Html.ValidationMessageFor(m => m.ResponsibleId)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(x => x.IncomingSource, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.DropDownListFor(x => x.IncomingSource, Model.IncomingSources, new { @class = "span9" })
+                    @Html.ValidationMessageFor(m => m.IncomingSource)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(x => x.Result, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextAreaFor(x => x.Result, new { placeholder = Html.DisplayNameFor(x => x.Result), @class = "span6" })
+                    @Html.ValidationMessageFor(m => m.Result)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(x => x.SourceInfo, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.DropDownListFor(x => x.SourceInfo, Model.SourceInfos, new { @class = "span9" })
+                    @Html.ValidationMessageFor(m => m.SourceInfo)
                 </div>
             </div>
             <div class="form-actions">
-                <button class="btn btn-success createPromotionActionSend" type="button">
+                <button class="btn btn-success createIncomingMessageJournalSend" type="button">
                     <i class="icon-ok bigger-110"></i>
                    Сохранить
                 </button>

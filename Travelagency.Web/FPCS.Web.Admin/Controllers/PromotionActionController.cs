@@ -241,7 +241,8 @@ namespace FPCS.Web.Admin.Controllers
                     DateFinish = dbEntity.DateFinish,
                     PrAction = dbEntity.PrAction
                 };
-             return PartialView(model);
+                model.Init();
+                return PartialView(model);
             }
         }
 

@@ -279,10 +279,10 @@ namespace FPCS.Web.Admin.Controllers
                         Person dbEntity = repo.Get(model.PersonId);
                         if (dbEntity == null) throw new NotFoundEntityException("Клиент не найден");
 
-                        dbEntity.CellPhone = model.CellPhone.Trim();
+                        dbEntity.CellPhone = model.CellPhone != null ? model.CellPhone.Trim() : String.Empty;
                         dbEntity.DateOfBirth = model.DateOfBirth.HasValue ? model.DateOfBirth.Value : new DateTimeOffset(1900,1,1,0,0,0, new TimeSpan());
                         dbEntity.Email = model.Email.Trim();
-                        dbEntity.FieldOfActivity = model.FieldOfActivity.Trim();
+                        dbEntity.FieldOfActivity = model.FieldOfActivity != null ? model.FieldOfActivity.Trim() : String.Empty;
                         dbEntity.FIO = model.FIO;
                         dbEntity.Phone = model.Phone;
                         dbEntity.UpdatedDate = DateTime.Now;
