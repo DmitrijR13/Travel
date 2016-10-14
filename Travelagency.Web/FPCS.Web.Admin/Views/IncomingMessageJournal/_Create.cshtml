@@ -36,6 +36,13 @@
                 </div>
             </div>
             <div class="control-group">
+                @Html.LabelFor(x => x.PersonId, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.ListBoxFor(x => x.Persons, new MultiSelectList(new[] { "A", "B" }))
+                    @Html.ValidationMessageFor(m => m.PersonId)
+                </div>
+            </div>
+            <div class="control-group">
                 @Html.LabelFor(x => x.RequestContent, new { @class = "control-label" })
                 <div class="controls">
                     @Html.TextAreaFor(x => x.RequestContent, new { placeholder = Html.DisplayNameFor(x => x.RequestContent), @class = "span6" })
