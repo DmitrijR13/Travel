@@ -5,7 +5,7 @@
             gridWrapper: ".gridWrapper",
             gridSelector: "#gridTable",
             pagerSelector: "#gridPager",
-            localStorageId: "IncomingMessageJournal",
+            //localStorageId: "IncomingMessageJournalGrid",
             url: "/IncomingMessageJournal/_Index",
             rowNum: 100000,
             showEditButton: true,
@@ -18,7 +18,7 @@
             colNames: ['IncomingMessageJournalId', 'Дата', 'ФИО', 'Телефон', 'Содержание заявки', 'Принял', 'Ответсвенный',
                 'Источник поступления', 'Результат', 'Источник информации о нас', 'Действия'],
             colModel: [
-				{ name: 'PromotionActionId', index: 'PromotionActionId', key: true, hidden: true },
+				{ name: 'IncomingMessageJournalId', index: 'IncomingMessageJournalId', key: true, hidden: true },
 				{
                     name: 'Date', index: 'Date', width: 65,
                     sortable: true
@@ -63,8 +63,10 @@
             ]
         });
 
+
+
         fpcs.jqGrid.initGridResize();
-        fpcs.jqGrid.initFilterToolbar("IncomingMessageJournal");
+       //fpcs.jqGrid.initFilterToolbar("IncomingMessageJournal");
 
         fpcs.jqGrid.initNavButtons("/IncomingMessageJournal/DeleteAll", incomingMessageJournal.showCreateDialog, "Добавить новую заявку");
     //    personEmail.initPersonEmailButton();
@@ -78,9 +80,11 @@
         incomingMessageJournal.initDeleteOneEntity();
        // fizPerson.sendEmail();
 
-        $(window).unload(function () {
-            fpcs.jqGrid.saveLocalStorage("IncomingMessageJournal");
-        });
+        $("#personsSelect").chosen({ allow_single_deselect: true, search_contains: true });
+
+        //$(window).unload(function () {
+        //    fpcs.jqGrid.saveLocalStorage("IncomingMessageJournal");
+        //});
     },
 
     //showDetailsDialog: function (id) {
@@ -97,11 +101,125 @@
     //},
 
     showCreateDialog: function () {
-        fpcs.getPartial('/IncomingMessageJournal/_Create/', function (data, textStatus) {
-            fpcs.showDialog("Добавить новую заявку", data);
+        location.href = '/IncomingMessageJournal/_Create/';
+    },
+
+    showEditDialog: function (id) {
+        location.href = '/IncomingMessageJournal/_Edit/' + id;
+    },
+
+    initFamilyPeoples: function () {
+        $("#personsSelect").chosen().change(function (arg, opt) {
+            var url = "/IncomingMessageJournal/_JournalPersonPartial/";
+            incomingMessageJournal.addUserToJournal(this, opt.selected, url, "students-feed");
+        });
+        incomingMessageJournal.initCreatePersonDialog();
+        incomingMessageJournal.initEditPersonDialog();
+    },
+
+    addUserToJournal: function (select, optId, url, containerId) {
+        fpcs.getPartial(url + optId, function (data, textStatus) {
+            if (data.ErrorCode != undefined && data.ErrorCode == 500) {
+                fpcs.errorAlert();
+                $(select).val('').trigger('chosen:updated');
+            }
+            else {
+                $("#profile-activity-del").remove();
+                $("#" + containerId).append(data);
+                //$(select).find("option[value='" + optId + "']").hidden;
+                $(select).val('').trigger('chosen:updated');
+            }
         });
     },
 
+    initCreatePersonDialog: function () {
+        $(document).off("click", ".createfizPersonOpen");
+        $(document).on("click", ".createFizPersonOpen", function (e) {
+            e.preventDefault();
+            fizPerson.showCreateDialog();
+        });
+
+        $(document).off("click", ".createFizPersonSend");
+        $(document).on("click", ".createFizPersonSend", function (e) {
+            e.preventDefault();
+            fpcs.sendForm("createFizPersonForm", function (data, textStatus) {
+                if (typeof data == "object" && data.ErrorCode == 200) {
+                    incomingMessageJournal.addCreatedPersonToJournal("/IncomingMessageJournal/_JournalPersonPartial/", JSON.parse(data.Obj), "students-feed");
+                    fpcs.closeDialog();
+                }
+                else {
+                    fpcs.showDialog("Create Student", data);
+                }
+            });
+        });
+    },
+
+    addCreatedPersonToJournal: function (url, userId, containerId) {
+        fpcs.getPartial(url + userId, function (data, textStatus) {
+            if (data.ErrorCode != undefined && data.ErrorCode == 500) {
+                fpcs.errorAlert();
+            }
+            else {
+                var container = $(data).closest("div.profile-activity");
+                var name = container.children("input[id*=FIO]").val();
+                var phones = container.children("input[id*=Phones]").val();
+                $("#profile-activity-del").remove();
+                $("#" + containerId).append(data);
+                $(".chosen-select").append("<option value='" + userId + "'>" + name + ', т. ' + phones + "</option>");
+                $(".chosen-select").trigger('chosen:updated');
+            }
+        });
+    },
+
+    delUserFromJournal: function (obj) {
+        var container = $(obj).closest("div.profile-activity");
+        var id = container.children("input[id*=PersonId]").val();
+        var name = container.children("input[id*=FIO]").val();
+
+        var select = $(obj).closest("div.widget-box").find(".widget-header h4 select");
+        select.prepend("<option value='" + id + "'>" + name + "</option>");
+        $(select).trigger('chosen:updated');
+        container.remove();
+        return false;
+    },
+
+    initJouranlCreateEditPages: function () {
+        $('textarea[class*=autosize]').autosize({ append: "\n" });
+        $(".chosen-select").chosen();
+        incomingMessageJournal.initFamilyPeoples();
+    },
+
+    initEditPersonDialog: function () {
+        $(document).off("click", ".editFizPersonOpen");
+        $(document).on("click", ".editFizPersonOpen", function (e) {
+            e.preventDefault();
+            var id = $(this).attr("rowid");
+            fizPerson.showEditDialog(id);
+        });
+
+        $(document).off("click", ".editFizPersonSend");
+        $(document).on("click", ".editFizPersonSend", function (e) {
+            e.preventDefault();
+            fpcs.sendForm("editFizPersonForm", function (data, textStatus) {
+                if (typeof data == "object" && data.ErrorCode == 200) {
+                    var obj = JSON.parse(data.Obj);
+                    var container = $("input[value=" + obj.PersonId + "]").closest(".profile-activity");
+                    container.find("a.user.editFizPersonOpen").text(obj.FIO);
+                    if (obj.Phones != null) {
+                        var text = "<i class='icon-phone  bigger-110'></i> " + obj.Phones;
+                        container.find("div.time").html(text);
+                    }
+                    else {
+                        container.find("div.time").html("");
+                    }
+                    fpcs.closeDialog();
+                }
+                else {
+                    fpcs.showDialog("Edit Student", data);
+                }
+            });
+        });
+    },
 
     initCreateDialogSend: function () {
         $(document).off("click", ".createIncomingMessageJournalSend");
@@ -116,12 +234,6 @@
                     fpcs.showDialog("Добавить новую заявку", data);
                 }
             });
-        });
-    },
-
-    showEditDialog: function (id) {
-        fpcs.getPartial('/IncomingMessageJournal/_Edit/' + id, function (data, textStatus) {
-            fpcs.showDialog("Изменить данные о заявке", data);
         });
     },
 

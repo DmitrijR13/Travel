@@ -3,6 +3,7 @@ using FPCS.Core.Unity;
 using FPCS.Data;
 using FPCS.Data.Enums;
 using FPCS.Data.Repo;
+using FPCS.Web.Admin.Models.Person;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -22,6 +23,8 @@ namespace FPCS.Web.Admin.Models.IncomingMessageJournal
         public DateTimeOffset Date { get; set; }
 
         public SelectList Persons { get; set; }
+
+        public IEnumerable<LightPersonModel> JournalPersons { get; set; }
 
         [Required]
         [Display(Name = "Физическое лицо")]
@@ -62,7 +65,11 @@ namespace FPCS.Web.Admin.Models.IncomingMessageJournal
             using (var uow = UnityManager.Instance.Resolve<IUnitOfWork>())
             {
                 var repoPerson = uow.GetRepo<IPersonRepo>();
-                var persons = repoPerson.GetAll().Select(x => new Lookup<Int64> { Value = x.PersonId, Text = x.FIO }).ToList();
+                var persons = repoPerson.GetAll().Select(x => new Lookup<Int64>
+                {
+                    Value = x.PersonId,
+                    Text = x.FIO + ", т. " + x.Phone + (x.CellPhone != "" ? "(" + x.CellPhone + ")" : "")
+                }).ToList();
                 Persons = new SelectList(persons, "Value", "Text");
 
                 var repoWorker = uow.GetRepo<IWorkerRepo>();

@@ -126,7 +126,7 @@ namespace FPCS.Web.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Delete(Guid id)
+        public ActionResult Delete(Int64 id)
         {
             try
             {

@@ -271,6 +271,8 @@
     <Compile Include="Models\IncomingMessageJournal\IncomingMessageJournalEditModel.cs" />
     <Compile Include="Models\IncomingMessageJournal\IncomingMessageJournalIndexModel.cs" />
     <Compile Include="Models\IncomingMessageJournal\IncomingMessageJournalListOption.cs" />
+    <Compile Include="Models\IncomingMessageJournal\JournalPersonsModel.cs" />
+    <Compile Include="Models\Person\LightPersonModel.cs" />
     <Compile Include="Models\PromotionAction\PromotionActionCreateModel.cs" />
     <Compile Include="Models\PromotionAction\PromotionActionEditModel.cs" />
     <Compile Include="Models\PromotionAction\PromotionActionIndexModel.cs" />
@@ -639,6 +641,8 @@
     <Content Include="Views\IncomingMessageJournal\_Create.cshtml" />
     <Content Include="Views\IncomingMessageJournal\_Edit.cshtml" />
     <Content Include="Views\IncomingMessageJournal\Index.cshtml" />
+    <Content Include="Views\IncomingMessageJournal\_JournalPersonsPartial.cshtml" />
+    <Content Include="Views\IncomingMessageJournal\_JournalPersonPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

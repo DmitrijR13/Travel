@@ -13,6 +13,7 @@ using FPCS.Data.Entities;
 using FPCS.Data.Exceptions;
 using FPCS.Core.Extensions;
 using FPCS.Core;
+using FPCS.Web.Admin.Models.Person;
 
 namespace FPCS.Web.Admin.Controllers
 {
@@ -132,7 +133,7 @@ namespace FPCS.Web.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Delete(Guid id)
+        public ActionResult Delete(Int64 id)
         {
             try
             {
@@ -152,18 +153,21 @@ namespace FPCS.Web.Admin.Controllers
         }
 
         [HttpGet]
-        public PartialViewResult _Create()
+        public ActionResult _Create()
         {
             var model = new IncomingMessageJournalCreateModel();
             model.Init();
-            return PartialView(model);
+            model.JournalPersons = new List<LightPersonModel>();
+            model.Date = DateTime.Now;
+            return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult _Create(IncomingMessageJournalCreateModel model)
         {
-            if (ModelState.IsValid)
+            if (model.JournalPersons == null) model.JournalPersons = new List<LightPersonModel>();
+            if (ModelState.IsValid && model.JournalPersons.Select(x => x.PersonId).FirstOrDefault() != 0)
             {
                 try
                 {
@@ -171,12 +175,12 @@ namespace FPCS.Web.Admin.Controllers
                     {
                         var repo = uow.GetRepo<IIncomingMessageJournalRepo>();
 
-                        var dbEntity = repo.Add(model.Date, model.PersonId, model.RequestContent, model.AcceptedById, 
+                        var dbEntity = repo.Add(model.Date, model.JournalPersons.Select(x => x.PersonId).FirstOrDefault(), model.RequestContent, model.AcceptedById, 
                             model.ResponsibleId, model.IncomingSource, model.Result, model.SourceInfo);
 
                         uow.Commit();
 
-                        return JsonRes(dbEntity.IncomingMessageJournalId.ToString());
+                        return RedirectToAction("Index");
                     }
                 }
                 catch (Exception ex)
@@ -184,8 +188,26 @@ namespace FPCS.Web.Admin.Controllers
                     ModelState.AddModelError("", ex.Message);
                 }
             }
+            model.Init();
+            return View("_Create", model);
+        }
 
-            return PartialView(model);
+        [HttpGet]
+        public PartialViewResult _JournalPersonPartial(Int64 id)
+        {
+            using (var uow = UnityManager.Resolve<IUnitOfWork>())
+            {
+                var dbEntity = uow.GetRepo<IPersonRepo>().Get(id);
+                if (dbEntity == null) return ErrorPartial("Student {0} not found", id);
+
+                var model = new LightPersonModel
+                {
+                    PersonId = dbEntity.PersonId,
+                    FIO = dbEntity.FIO,
+                    Phones = dbEntity.Phone + (dbEntity.CellPhone != "" ? "(" + dbEntity.CellPhone + ")" : "")
+                };
+                return PartialView(model);
+            }
         }
 
         //[HttpGet]
@@ -244,14 +266,32 @@ namespace FPCS.Web.Admin.Controllers
         //}
 
 
+
         [HttpGet]
-        public PartialViewResult _Edit(Int64 id)
+        public ActionResult _Edit(Int64 id)
         {
             using (var uow = UnityManager.Resolve<IUnitOfWork>())
             {
                 var dbEntity = uow.GetRepo<IIncomingMessageJournalRepo>().Get(id);
                 if (dbEntity == null) return ErrorPartial("Заявка {0} не найдена", id);
 
+                var dbPersonEntity = uow.GetRepo<IPersonRepo>().Get(dbEntity.PersonId);
+
+                var person = new LightPersonModel
+                {
+                    PersonId = dbPersonEntity.PersonId,
+                    FIO = dbPersonEntity.FIO,
+                    Phones = dbPersonEntity.Phone + (dbPersonEntity.CellPhone != "" ? "(" + dbPersonEntity.CellPhone + ")" : "")
+                };
+
+                IEnumerable<LightPersonModel> journalPerson = new LightPersonModel[] 
+                {
+                    new LightPersonModel
+                    {
+                        PersonId = person.PersonId,
+                        FIO = person.FIO,
+                        Phones = person.Phones
+                    }};
 
                 var model = new IncomingMessageJournalEditModel
                 {
@@ -263,10 +303,11 @@ namespace FPCS.Web.Admin.Controllers
                     ResponsibleId = dbEntity.ResponsibleId,
                     IncomingSource = dbEntity.IncomingSource,
                     Result = dbEntity.Result,
-                    SourceInfo = dbEntity.SourceInfo
+                    SourceInfo = dbEntity.SourceInfo,
+                    JournalPersons = journalPerson
                 };
                 model.Init();
-                return PartialView(model);
+                return View(model);
             }
         }
 
@@ -274,7 +315,8 @@ namespace FPCS.Web.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult _Edit(IncomingMessageJournalEditModel model)
         {
-            if (ModelState.IsValid)
+            if (model.JournalPersons == null) model.JournalPersons = new List<LightPersonModel>();
+            if (ModelState.IsValid && model.JournalPersons.Select(x => x.PersonId).FirstOrDefault() != 0)
             {
                 try
                 {
@@ -286,7 +328,7 @@ namespace FPCS.Web.Admin.Controllers
                         if (dbEntity == null) throw new NotFoundEntityException("Заявка не найдена");
 
                         dbEntity.Date = model.Date;
-                        dbEntity.PersonId = model.PersonId;
+                        dbEntity.PersonId = model.JournalPersons.Select(x => x.PersonId).FirstOrDefault();
                         dbEntity.RequestContent = model.RequestContent;
                         dbEntity.AcceptedById = model.AcceptedById;
                         dbEntity.ResponsibleId = model.ResponsibleId;
@@ -299,7 +341,7 @@ namespace FPCS.Web.Admin.Controllers
 
                         uow.Commit();
 
-                        return JsonRes(new { PersonId = dbEntity.IncomingMessageJournalId });
+                        return RedirectToAction("Index");
                     }
                 }
                 catch (Exception ex)
@@ -308,7 +350,8 @@ namespace FPCS.Web.Admin.Controllers
                 }
             }
 
-            return PartialView(model);
+            model.Init();
+            return View(model);
         }
     }
 }

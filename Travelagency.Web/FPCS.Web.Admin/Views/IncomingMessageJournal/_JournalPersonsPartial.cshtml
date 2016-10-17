@@ -1,0 +1,37 @@
+﻿@model FPCS.Web.Admin.Models.IncomingMessageJournal.JournalPersonsModel
+
+<div class="row-fluid">
+    <div class="span12">
+        <div class="span6">
+            <div class="widget-box transparent">
+                <div class="widget-header widget-header-small">
+                    <h4 class="blue smaller">
+                        <span class="mright10 width105">
+                            <i class="icon-group grey"></i>
+                            Клиенты
+                        </span>
+                    </h4>
+                    <div class="width350 inline">
+                        @Html.DropDownList("personsSelect", Model.Persons, "", new { @class = "chosen-select span6", data_placeholder = "Найти клиента"})
+                    </div>
+                    <div class="widget-toolbar action-buttons">
+                        <a href="#" class="pink createFizPersonOpen" title="добавить нового клиента">
+                            <i class="icon-plus-sign-alt green icon-large"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="widget-body">
+                    <div class="widget-main padding-8">
+                        <div id="students-feed" class="profile-feed">
+                            @foreach (var user in @Model.JournalPersons)
+                            {
+                                @Html.Partial("_JournalPersonPartial", user)
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

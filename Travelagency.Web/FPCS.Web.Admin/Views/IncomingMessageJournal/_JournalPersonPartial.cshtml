@@ -1,0 +1,29 @@
+﻿@model FPCS.Web.Admin.Models.Person.LightPersonModel
+<div class="profile-activity clearfix" id="profile-activity-del">
+    @Html.Hidden("JournalPersons.Index", Model.PersonId)
+    @Html.Hidden("JournalPersons[" + Model.PersonId + "].PersonId", Model.PersonId)
+    @Html.Hidden("JournalPersons[" + Model.PersonId + "].FIO", Model.FIO)
+    @Html.Hidden("JournalPersons[" + Model.PersonId + "].Phones", Model.Phones)
+    <div>
+        <img class="pull-left" alt="Alex Doe's avatar" src="/Images/avatar2.png" />
+        <a class="user editPersonOpen" rowid="@Model.PersonId">@Model.FIO</a>
+        @*@Html.ActionLink(Model.FullName, "_Edit", "Guardian", new { id = Model.DbUserId, isDialog = true }, new { @class = "user editGuardianOpen" })*@
+        @if (!String.IsNullOrEmpty(Model.Phones))
+        {
+            <div class="time">
+                <i class="icon-phone  bigger-110"></i>
+                @Model.Phones
+            </div>
+        }
+    </div>
+
+    <div class="tools action-buttons">
+        <a rowid="@Model.PersonId" href="#" class="blue editFizPersonOpen">
+            <i class="icon-pencil bigger-125"></i>
+        </a>
+
+        <a href="#" onclick="return incomingMessageJournal.delUserFromJournal(this)" class="red">
+            <i class="icon-remove bigger-125"></i>
+        </a>
+    </div>
+</div>
